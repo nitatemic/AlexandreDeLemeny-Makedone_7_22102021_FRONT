@@ -14,24 +14,24 @@ function Signup() {
                         <form>
                             <div className="form-outline mb-4">
                                 <input type="text" id="lastName" className="form-control form-control-lg"/>
-                                <label className="form-label" htmlFor="form3Example3">Nom</label>
+                                <label className="form-label" htmlFor="lastName">Nom</label>
                             </div>
 
                             <div className="form-outline mb-4">
                                 <input type="text" id="firstName" className="form-control form-control-lg"/>
-                                <label className="form-label" htmlFor="form3Example3">Prénom</label>
+                                <label className="form-label" htmlFor="firstName">Prénom</label>
                             </div>
 
                             <div className="form-outline mb-4">
                                 <input type="email" id="mail" className="form-control form-control-lg"
                                        placeholder="Entrer une adresse mail valide"/>
-                                <label className="form-label" htmlFor="form3Example3">Adresse mail</label>
+                                <label className="form-label" htmlFor="mail">Adresse mail</label>
                             </div>
 
                             <div className="form-outline mb-3">
                                 <input type="password" id="password" className="form-control form-control-lg"
                                        placeholder="Entrer un mot de passe"/>
-                                <label className="form-label" htmlFor="form3Example4">Mot de passe</label>
+                                <label className="form-label" htmlFor="password">Mot de passe</label>
                             </div>
 
                             <div className="text-center text-lg-start mt-4 pt-2">
@@ -39,7 +39,7 @@ function Signup() {
                                         style="padding-left: 2.5rem; padding-right: 2.5rem;">S'inscrire
                                 </button>
                                 <p
-                                    className="small fw-bold mt-2 pt-1 mb-0">Vous n'avez pas de compte ?<a href="/signup" className="link-danger">S'inscrire</a>
+                                    className="small fw-bold mt-2 pt-1 mb-0">Vous avez déjà un compte ?<a href="/" className="link-danger">Se connecter</a>
                                 </p>
                             </div>
                         </form>
