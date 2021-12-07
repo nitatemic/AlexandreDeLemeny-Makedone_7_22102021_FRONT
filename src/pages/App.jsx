@@ -4,17 +4,19 @@ import Banner from "./Banner"   //navbar
 import Login from "./Login"
 import Signup from "./Signup"
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 export default function App() {
     return (
-       <div className = "app">
-           <Router>
-               <Banner />
+        <Router>
+           <div className = "app">
+                   <Banner />
+                   <Routes>
+                       <Route path = "/" exact element = {<Login />} />
+                       <Route path = "/signup" exact element = {<Signup />} />
+                   </Routes>
 
-               <route path = "/" exact component = {Login} />
-               <route path = "/signup" exact component = {Signup} />
-           </Router>
-       </div>
+           </div>
+        </Router>
     );
 }

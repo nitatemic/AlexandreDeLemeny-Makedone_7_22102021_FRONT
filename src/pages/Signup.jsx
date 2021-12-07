@@ -7,7 +7,7 @@ function Signup() {
             <div className="container-fluid h-custom">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-md-9 col-lg-6 col-xl-5">
-                        <img src="../../assets/images/logo.png"	//TODO: Change to logo
+                        <img src = "../../assets/images/logo/svg/icon-left-font-monochrome-black.svg"
                              className="img-fluid"
                              alt="Logo Groupomania"/>
                     </div>
@@ -36,8 +36,7 @@ function Signup() {
                             </div>
 
                             <div className="text-center text-lg-start mt-4 pt-2">
-                                <button type="button" className="btn btn-primary btn-lg"
-                                        style="padding-left: 2.5rem; padding-right: 2.5rem;">S'inscrire
+                                <button type="button" className="btn btn-primary btn-lg">S'inscrire
                                 </button>
                                 <p
                                     className="small fw-bold mt-2 pt-1 mb-0">Vous avez déjà un compte ?<a href="/" className="link-danger">Se connecter</a>
