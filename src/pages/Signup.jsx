@@ -36,7 +36,7 @@ function Signup() {
                             </div>
 
                             <div className="text-center text-lg-start mt-4 pt-2">
-                                <button type="button" className="btn btn-primary btn-lg">S'inscrire
+                                <button type="button" className="btn btn-primary btn-lg" id="btnSignUp" onClick={signUp}>S'inscrire
                                 </button>
                                 <p
                                     className="small fw-bold mt-2 pt-1 mb-0">Vous avez déjà un compte ?<a href="/" className="link-danger">Se connecter</a>
@@ -50,4 +50,38 @@ function Signup() {
     )
 }
 
+//fonction qui permet de créer un compte
+
+function signUp(e) {
+    e.preventDefault();
+    //on récupère les données du formulaire
+    const lastName = document.getElementById('lastName').value;
+    const firstName = document.getElementById('firstName').value;
+    const mail = document.getElementById('mail').value;
+    const password = document.getElementById('password').value;
+
+    //on crée un objet user
+    const user = {
+        lastName: lastName,
+        firstName: firstName,
+        mail: mail,
+        password: password
+
+    };
+    console.log(user);
+    //on envoie les données au serveur
+    console.log("Envoi des données au serveur");
+    fetch('http://localhost:3001/api/auth/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => console.error(error));
+}
 export default Signup
