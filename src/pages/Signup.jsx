@@ -68,7 +68,6 @@ function signUp(e) {
         password: password
 
     };
-    console.log(user);
     //on envoie les données au serveur
     console.log("Envoi des données au serveur");
     fetch('http://localhost:3001/api/auth/signup', {
