@@ -1,9 +1,10 @@
+import React from "react";
 import "../index.css"
 import Banner from "./Banner"   //navbar
 import Login from "./Login"
-import React from "react";
-import {BrowserRouter as Route, Router, Routes} from "react-router-dom";
 import Signup from "./Signup"
+
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 export default function App() {
     return (

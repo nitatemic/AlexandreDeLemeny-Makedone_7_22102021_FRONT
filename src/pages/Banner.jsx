@@ -5,7 +5,7 @@ function Banner() {
 	return(
 	<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div className="container-fluid">
-			<a href="./login" className="navbar-brand">
+			<a href="#" className="navbar-brand">
 				<img src="../../assets/images/logo/svg/icon-left-font-monochrome-white.svg" alt="Logo de Groupomania" className="d-inline-block align-middle mr-2" height="20rem"/>	{/* TODO : Revoir la taille de l'image */}
 			</a>
 

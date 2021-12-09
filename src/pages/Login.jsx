@@ -1,5 +1,6 @@
-import './css/login.css'
 import React from 'react';
+import './css/login.css'
+const imgFolder = './assets/images';
 function Login() {
 	return (
 		<section className="vh-100">
