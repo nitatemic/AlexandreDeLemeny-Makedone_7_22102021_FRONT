@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Button, TextField} from "@mui/material";
-
-import './css/login.css'
+import './css/login.css';
 
 function Signup() {
     return (
