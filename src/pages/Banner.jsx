@@ -35,8 +35,7 @@ export default function Banner() {
 							noWrap
 							component="div"
 							sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-						>
-						</Typography>
+						 />
 
 						<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
 							<IconButton
