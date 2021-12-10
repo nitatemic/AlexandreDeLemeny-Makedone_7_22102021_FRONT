@@ -1,14 +1,17 @@
 import React from 'react';
 import './css/login.css'
-import {Button, TextField} from "@mui/material";
+import {Button, TextField, ThemeProvider} from "@mui/material";
+import darkTheme from "./global";
+import './css/global.css'
 
 function Login() {
 	return (
+		<ThemeProvider theme={darkTheme}>
 		<section className="vh-100">
 			<div className="container-fluid h-custom">
 				<div className="row d-flex justify-content-center align-items-center h-100">
 					<div className="col-md-9 col-lg-6 col-xl-5">
-						<img src = "../../assets/images/logo/svg/icon-left-font-monochrome-black.svg"
+						<img src = "../../assets/images/logo/svg/icon-left-font-monochrome-white.svg"
 							 className="img-fluid"
 							 alt="Logo Groupomania"/>
 					</div>
@@ -34,6 +37,7 @@ function Login() {
 				</div>
 			</div>
 		</section>
+			</ThemeProvider>
 	)
 }
 

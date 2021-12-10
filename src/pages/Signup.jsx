@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Button, TextField} from "@mui/material";
+import {Button, TextField, Typography} from "@mui/material";
 import './css/login.css';
 
 function Signup() {
@@ -9,7 +9,7 @@ function Signup() {
             <div className="container-fluid h-custom">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-md-9 col-lg-6 col-xl-5">
-                        <img src = "../../assets/images/logo/svg/icon-left-font-monochrome-black.svg"
+                        <img src = "../../assets/images/logo/svg/icon-left-font-monochrome-white.svg"
                              className="img-fluid"
                              alt="Logo Groupomania"/>
                     </div>
@@ -36,9 +36,9 @@ function Signup() {
                             <div className="text-center text-lg-start mt-4 pt-2">
                                 <Button variant="contained"  id="btnSignUp" onClick={signUp}>S'inscrire
                                 </Button>
-                                <p
+                                <Typography variant="body1"
                                     className="small fw-bold mt-2 pt-1 mb-0">Vous avez déjà un compte ? <a href="/" className="link-danger">Se connecter</a>
-                                </p>
+                                </Typography>
                             </div>
                         </form>
                     </div>
