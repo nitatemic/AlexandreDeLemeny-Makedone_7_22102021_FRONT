@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Box, TextField} from "@mui/material";
-import {sizing} from '@mui/system';
+import {Button, TextField} from "@mui/material";
+
 import './css/login.css'
 
 function Signup() {
@@ -35,10 +35,10 @@ function Signup() {
 
 
                             <div className="text-center text-lg-start mt-4 pt-2">
-                                <button type="button" className="btn btn-primary btn-lg" id="btnSignUp" onClick={signUp}>S'inscrire
-                                </button>
+                                <Button variant="contained"  id="btnSignUp" onClick={signUp}>S'inscrire
+                                </Button>
                                 <p
-                                    className="small fw-bold mt-2 pt-1 mb-0">Vous avez déjà un compte ?<a href="/" className="link-danger">Se connecter</a>
+                                    className="small fw-bold mt-2 pt-1 mb-0">Vous avez déjà un compte ? <a href="/" className="link-danger">Se connecter</a>
                                 </p>
                             </div>
                         </form>
