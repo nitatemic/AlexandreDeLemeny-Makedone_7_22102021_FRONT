@@ -1,4 +1,7 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import {Box, TextField} from "@mui/material";
+import {sizing} from '@mui/system';
 import './css/login.css'
 
 function Signup() {
@@ -13,27 +16,23 @@ function Signup() {
                     </div>
                     <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                         <form>
-                            <div className="form-outline mb-4">
-                                <input type="text" id="lastName" className="form-control form-control-lg"/>
-                                <label className="form-label" htmlFor="lastName">Nom</label>
+
+                            <div className="form-outline mb-4" >
+                                <TextField sx={{width: '100%'}} label="Prénom" variant="outlined" type="text" id="firstName" />
                             </div>
 
-                            <div className="form-outline mb-4">
-                                <input type="text" id="firstName" className="form-control form-control-lg"/>
-                                <label className="form-label" htmlFor="firstName">Prénom</label>
+                            <div className="form-outline mb-4" >
+                                <TextField sx={{width: '100%'}} label="Nom de famille" variant="outlined" type="text" id="lastName" />
                             </div>
 
-                            <div className="form-outline mb-4">
-                                <input type="email" id="mail" className="form-control form-control-lg"
-                                       placeholder="Entrer une adresse mail valide"/>
-                                <label className="form-label" htmlFor="mail">Adresse mail</label>
+                            <div className="form-outline mb-4" >
+                                <TextField sx={{width: '100%'}} label="Adresse mail" variant="outlined" type="email" id="mail" />
                             </div>
 
-                            <div className="form-outline mb-3">
-                                <input type="password" id="password" className="form-control form-control-lg"
-                                       placeholder="Entrer un mot de passe"/>
-                                <label className="form-label" htmlFor="password">Mot de passe</label>
+                            <div className="form-outline mb-4" >
+                                <TextField sx={{width: '100%'}} label="Mot de passe" variant="outlined" type="password" id="password" />
                             </div>
+
 
                             <div className="text-center text-lg-start mt-4 pt-2">
                                 <button type="button" className="btn btn-primary btn-lg" id="btnSignUp" onClick={signUp}>S'inscrire
