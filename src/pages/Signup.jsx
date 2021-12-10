@@ -1,50 +1,50 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Button, TextField} from "@mui/material";
+import {Button, TextField, Typography} from "@mui/material";
 import './css/login.css';
+import darkTheme from "./global";
+import {ThemeProvider} from "@emotion/react";
 
 function Signup() {
     return (
-        <section className="vh-100">
-            <div className="container-fluid h-custom">
-                <div className="row d-flex justify-content-center align-items-center h-100">
-                    <div className="col-md-9 col-lg-6 col-xl-5">
-                        <img src = "../../assets/images/logo/svg/icon-left-font-monochrome-black.svg"
-                             className="img-fluid"
-                             alt="Logo Groupomania"/>
-                    </div>
-                    <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                        <form>
 
-                            <div className="form-outline mb-4" >
-                                <TextField sx={{width: '100%'}} label="Prénom" variant="outlined" type="text" id="firstName" />
-                            </div>
+            <section className="vh-100">
+                <div className="container-fluid h-custom">
+                    <div className="row d-flex justify-content-center align-items-center h-100">
+                        <div className="col-md-9 col-lg-6 col-xl-5">
+                            <img src = "../../assets/images/logo/svg/icon-left-font-monochrome-white.svg"
+                                 className="img-fluid"
+                                 alt="Logo Groupomania"/>
+                        </div>
+                        <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                            <form>
 
-                            <div className="form-outline mb-4" >
-                                <TextField sx={{width: '100%'}} label="Nom de famille" variant="outlined" type="text" id="lastName" />
-                            </div>
+                                <div className="form-outline mb-4" >
+                                    <TextField sx={{width: '100%'}} label="Prénom" variant="outlined" type="text" id="firstName" />
+                                </div>
 
-                            <div className="form-outline mb-4" >
-                                <TextField sx={{width: '100%'}} label="Adresse mail" variant="outlined" type="email" id="mail" />
-                            </div>
+                                <div className="form-outline mb-4" >
+                                    <TextField sx={{width: '100%'}} label="Nom de famille" variant="outlined" type="text" id="lastName" />
+                                </div>
 
-                            <div className="form-outline mb-4" >
-                                <TextField sx={{width: '100%'}} label="Mot de passe" variant="outlined" type="password" id="password" />
-                            </div>
+                                <div className="form-outline mb-4" >
+                                    <TextField sx={{width: '100%'}} label="Adresse mail" variant="outlined" type="email" id="mail" />
+                                </div>
+
+                                <div className="form-outline mb-4" >
+                                    <TextField sx={{width: '100%'}} label="Mot de passe" variant="outlined" type="password" id="password" />
+                                </div>
 
 
-                            <div className="text-center text-lg-start mt-4 pt-2">
-                                <Button variant="contained"  id="btnSignUp" onClick={signUp}>S'inscrire
-                                </Button>
-                                <p
-                                    className="small fw-bold mt-2 pt-1 mb-0">Vous avez déjà un compte ? <a href="/" className="link-danger">Se connecter</a>
-                                </p>
-                            </div>
-                        </form>
+                                <div className="text-center text-lg-start mt-4 pt-2">
+                                    <Button variant="contained"  id="btnSignUp" onClick={signUp}>S'inscrire
+                                    </Button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
     )
 }
 
