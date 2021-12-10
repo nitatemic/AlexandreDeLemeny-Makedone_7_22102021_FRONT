@@ -128,11 +128,13 @@ export default function Banner() {
 								open={Boolean(anchorElUser)}
 								onClose={handleCloseUserMenu}
 							>
-								{settings.map((setting) => (
-									<MenuItem key={setting} onClick={handleCloseNavMenu}>
-										<Typography textAlign="center">{setting}</Typography>
+									<MenuItem>
+										<Link to={"./"} className="linkToButton" >Mon profil</Link>	{/*TODO : Faire la page du profil*/}
 									</MenuItem>
-								))}
+
+									<MenuItem >
+									<Link to={"./"} className="linkToButton">Se déconnecter</Link>	{/*TODO : Faire la fonction de déconnexion*/}
+									</MenuItem>
 							</Menu>
 						</Box>
 					</Toolbar>
