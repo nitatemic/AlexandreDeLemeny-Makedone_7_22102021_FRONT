@@ -39,9 +39,6 @@ function Signup() {
                                 <div className="text-center text-lg-start mt-4 pt-2">
                                     <Button variant="contained"  id="btnSignUp" onClick={signUp}>S'inscrire
                                     </Button>
-                                    <Typography variant="body1"
-                                        className="small fw-bold mt-2 pt-1 mb-0">Vous avez déjà un compte ? <a href="/" className="link-danger">Se connecter</a>
-                                    </Typography>
                                 </div>
                             </form>
                         </div>

@@ -27,9 +27,6 @@ function Login() {
 								<div className="text-center text-lg-start mt-4 pt-2">
 									<Button variant="contained"  id="btnSignUp" onClick={login}>Se connecter
 									</Button>
-									<p
-										className="small fw-bold mt-2 pt-1 mb-0">Vous n'avez pas de compte ? <a href="/signup" className="link-danger">S'inscrire</a>
-									</p>
 								</div>
 							</form>
 						</div>
