@@ -6,12 +6,9 @@ import {AppBar, Stack, createTheme, Toolbar, Typography, ThemeProvider} from '@m
 
 function Banner() {
 	return(
-		<ThemeProvider theme={darkTheme}>
 			<AppBar position="static" color="primary" enableColorOnDark>
 				<p>Coucou</p>
-
 			</AppBar>
-		</ThemeProvider>
 	)}
 
 export default Banner;

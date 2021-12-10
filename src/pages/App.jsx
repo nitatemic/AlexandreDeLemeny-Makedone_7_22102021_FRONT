@@ -5,10 +5,13 @@ import Login from "./Login"
 import Signup from "./Signup"
 
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import darkTheme from "./global";
+import {ThemeProvider} from "@emotion/react";
 
 export default function App() {
     return (
-        <Router>
+        <ThemeProvider theme={darkTheme}>
+            <Router>
            <div className = "app">
                    <Banner />
                    <Routes>
@@ -18,5 +21,6 @@ export default function App() {
 
            </div>
         </Router>
+        </ThemeProvider>
     );
 }
