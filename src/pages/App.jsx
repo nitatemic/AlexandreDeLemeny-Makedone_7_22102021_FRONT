@@ -1,6 +1,6 @@
 import React from "react";
 import "../index.css"
-import Banner from "./Banner"   //navbar
+import Banner from '../components/Banner'   //navbar
 import Login from "./Login"
 import Signup from "./Signup"
 
