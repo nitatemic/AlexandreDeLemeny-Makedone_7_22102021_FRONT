@@ -13,8 +13,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
 import {Link} from "react-router-dom";
+import'./css/banner.css';
 
-const pages = ['Connexion', 'Inscription',];
+const pages = [['Connexion', '/login'], ['Inscription', '/signup']];
 const settings = ['Mon profil', 'Se déconnecter'];
 
 export default function Banner() {
@@ -78,11 +79,13 @@ export default function Banner() {
 									display: { xs: 'block', md: 'none' },
 								}}
 							>
-								{pages.map((page) => (
-									<MenuItem key={page} onClick={handleCloseNavMenu}>
-										<Typography textAlign="center">{page}</Typography>
-									</MenuItem>
-								))}
+								<MenuItem >
+									<Link to={"./"} className="linkToButton">Connexion</Link>
+								</MenuItem>
+
+								<MenuItem>
+									<Link to={"./signup"} className="linkToButton">Inscription</Link>
+								</MenuItem>
 							</Menu>
 						</Box>
 						<Typography
@@ -94,15 +97,13 @@ export default function Banner() {
 							LOGO
 						</Typography>
 						<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-							{pages.map((page) => (
-								<Button
-									key={page}
-									onClick={handleCloseNavMenu}
-									sx={{ my: 2, color: 'white', display: 'block' }}
-								>
-									{page}
-								</Button>
-							))}
+							<MenuItem>
+								<Link to={"./"} className="linkToButton" >Connexion</Link>
+							</MenuItem>
+
+							<MenuItem >
+								<Link to={"./signup"} className="linkToButton">Inscription</Link>
+							</MenuItem>
 						</Box>
 
 						<Box sx={{ flexGrow: 0 }}>
