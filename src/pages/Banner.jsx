@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {AppBar, Box, Toolbar, IconButton, Typography, Menu, MenuIcon, Container, Avatar, Tooltip, MenuItem} from '@mui/material';
+import {AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Tooltip, MenuItem} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
 
 import {Link} from "react-router-dom";
@@ -84,7 +85,7 @@ export default function Banner() {
 							component="div"
 							sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
 						>
-							LOGO
+							Groupomania
 						</Typography>
 						<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 							<MenuItem>
@@ -118,13 +119,13 @@ export default function Banner() {
 								open={Boolean(anchorElUser)}
 								onClose={handleCloseUserMenu}
 							>
-									<MenuItem>
-										<Link to={"./"} className="linkToButton" >Mon profil</Link>	{/*TODO : Faire la page du profil*/}
-									</MenuItem>
+								<MenuItem>
+									<Link to={"./"} className="linkToButton" >Mon profil</Link>	{/*TODO : Faire la page du profil*/}
+								</MenuItem>
 
-									<MenuItem >
-									<Link to={"./"} className="linkToButton">Se déconnecter</Link>	{/*TODO : Faire la fonction de déconnexion*/}
-									</MenuItem>
+								<MenuItem >
+								<Link to={"./"} className="linkToButton">Se déconnecter</Link>	{/*TODO : Faire la fonction de déconnexion*/}
+								</MenuItem>
 							</Menu>
 						</Box>
 					</Toolbar>
