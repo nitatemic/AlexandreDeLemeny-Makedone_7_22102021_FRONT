@@ -2,12 +2,9 @@ import * as React from 'react';
 import {AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Tooltip, MenuItem} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
-
 import {Link} from "react-router-dom";
 import'./css/banner.css';
 
-const pages = [['Connexion', '/login'], ['Inscription', '/signup']];
-const settings = ['Mon profil', 'Se déconnecter'];
 
 export default function Banner() {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
