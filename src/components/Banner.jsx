@@ -6,7 +6,16 @@ import {Link} from "react-router-dom";
 import'./css/banner.css';
 
 
-export default function Banner() {
+export default function Banner(props) {
+
+	let auth = null
+	if (props.userID !== undefined) {
+		auth = React.useState(true)
+	} else {
+		auth = React.useState(false)
+	}
+
+
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -35,7 +44,7 @@ export default function Banner() {
 							noWrap
 							component="div"
 							sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-						 />
+						/>
 
 						<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
 							<IconButton
@@ -76,27 +85,28 @@ export default function Banner() {
 							</Menu>
 						</Box>
 						<Typography
-							variant="h6"
-							noWrap
-							component="div"
-							sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+						variant="h6"
+						noWrap
+						component="div"
+						sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
 						>
-							Groupomania
+						Groupomania
 						</Typography>
 						<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-							<MenuItem>
-								<Link to={"./"} className="linkToButton" >Connexion</Link>
-							</MenuItem>
+						<MenuItem>
+						<Link to={"./"} className="linkToButton" >Connexion</Link>
+						</MenuItem>
 
-							<MenuItem >
-								<Link to={"./signup"} className="linkToButton">Inscription</Link>
-							</MenuItem>
+						<MenuItem >
+						<Link to={"./signup"} className="linkToButton">Inscription</Link>
+						</MenuItem>
 						</Box>
 
+
 						<Box sx={{ flexGrow: 0 }}>
-							<Tooltip title="Open settings">
+							<Tooltip title="Gérer mon profil">
 								<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-									<Avatar alt="Icônes d'une personne" />
+									<Avatar alt="Icône d'une personne" />
 								</IconButton>
 							</Tooltip>
 							<Menu
@@ -120,7 +130,7 @@ export default function Banner() {
 								</MenuItem>
 
 								<MenuItem >
-								<Link to={"./"} className="linkToButton">Se déconnecter</Link>	{/*TODO : Faire la fonction de déconnexion*/}
+									<Link to={"./"} className="linkToButton">Se déconnecter</Link>	{/*TODO : Faire la fonction de déconnexion*/}
 								</MenuItem>
 							</Menu>
 						</Box>
