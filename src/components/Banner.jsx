@@ -82,6 +82,10 @@ export default function Banner(props) {
 								<MenuItem>
 									<Link to={"./signup"} className="linkToButton">Inscription</Link>
 								</MenuItem>
+
+								<MenuItem >
+									<Link to={"./flux"} className="linkToButton">Flux (BOUTON DE TEST)</Link> {/* TODO : Supprimer le bouton */}
+								</MenuItem>
 							</Menu>
 						</Box>
 						<Typography
@@ -99,6 +103,9 @@ export default function Banner(props) {
 
 						<MenuItem >
 						<Link to={"./signup"} className="linkToButton">Inscription</Link>
+						</MenuItem>
+						<MenuItem >
+							<Link to={"./flux"} className="linkToButton">FLUX (BOUTON DE TEST)</Link>	{/* TODO : Supprimer le bouton */}
 						</MenuItem>
 						</Box>
 

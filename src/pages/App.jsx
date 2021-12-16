@@ -3,6 +3,7 @@ import "../index.css"
 import Banner from '../components/Banner'   //navbar
 import Login from "./Login"
 import Signup from "./Signup"
+import Flux from "./Flux"
 
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import darkTheme from "./global";
@@ -17,6 +18,7 @@ export default function App() {
                    <Routes>
                        <Route path = "/" exact element = {<Login />} />
                        <Route path = "/signup" exact element = {<Signup />} />
+                       <Route path = "/flux" exact element = {<Flux />} />
                    </Routes>
 
            </div>
