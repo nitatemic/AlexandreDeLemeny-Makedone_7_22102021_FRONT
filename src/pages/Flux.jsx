@@ -1,6 +1,6 @@
 //Page principal, qui affiche tous les posts
 import React from 'react';
-import './css/login.css'
+import './css/Login.css'
 import {Button, TextField} from "@mui/material";
 const imgFolder = './assets/images';
 function Flux() {

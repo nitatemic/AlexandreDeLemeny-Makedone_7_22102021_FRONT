@@ -8,12 +8,8 @@ import'./css/banner.css';
 
 export default function Banner(props) {
 
-	let auth = null
-	if (props.userID !== undefined) {
-		auth = React.useState(true)
-	} else {
-		auth = React.useState(false)
-	}
+	let auth = true
+
 
 
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -46,101 +42,109 @@ export default function Banner(props) {
 							sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
 						/>
 
-						<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-							<IconButton
-								size="large"
-								aria-label="account of current user"
-								aria-controls="menu-appbar"
-								aria-haspopup="true"
-								onClick={handleOpenNavMenu}
-								color="inherit"
-							>
-								<MenuIcon />
-							</IconButton>
-							<Menu
-								id="menu-appbar"
-								anchorEl={anchorElNav}
-								anchorOrigin={{
-									vertical: 'bottom',
-									horizontal: 'left',
-								}}
-								keepMounted
-								transformOrigin={{
-									vertical: 'top',
-									horizontal: 'left',
-								}}
-								open={Boolean(anchorElNav)}
-								onClose={handleCloseNavMenu}
-								sx={{
-									display: { xs: 'block', md: 'none' },
-								}}
-							>
-								<MenuItem >
-									<Link to={"./"} className="linkToButton">Connexion</Link>
-								</MenuItem>
-
-								<MenuItem>
-									<Link to={"./signup"} className="linkToButton">Inscription</Link>
-								</MenuItem>
-
-								<MenuItem >
-									<Link to={"./flux"} className="linkToButton">Flux (BOUTON DE TEST)</Link> {/* TODO : Supprimer le bouton */}
-								</MenuItem>
-							</Menu>
-						</Box>
-						<Typography
-						variant="h6"
-						noWrap
-						component="div"
-						sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-						>
-						Groupomania
-						</Typography>
-						<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-						<MenuItem>
-						<Link to={"./"} className="linkToButton" >Connexion</Link>
-						</MenuItem>
-
-						<MenuItem >
-						<Link to={"./signup"} className="linkToButton">Inscription</Link>
-						</MenuItem>
-						<MenuItem >
-							<Link to={"./flux"} className="linkToButton">FLUX (BOUTON DE TEST)</Link>	{/* TODO : Supprimer le bouton */}
-						</MenuItem>
-						</Box>
-
-
-						<Box sx={{ flexGrow: 0 }}>
-							<Tooltip title="Gérer mon profil">
-								<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-									<Avatar alt="Icône d'une personne" />
-								</IconButton>
-							</Tooltip>
-							<Menu
-								sx={{ mt: '45px' }}
-								id="menu-appbar"
-								anchorEl={anchorElUser}
-								anchorOrigin={{
-									vertical: 'top',
-									horizontal: 'right',
-								}}
-								keepMounted
-								transformOrigin={{
-									vertical: 'top',
-									horizontal: 'right',
-								}}
-								open={Boolean(anchorElUser)}
-								onClose={handleCloseUserMenu}
-							>
-								<MenuItem>
-									<Link to={"./"} className="linkToButton" >Mon profil</Link>	{/*TODO : Faire la page du profil*/}
-								</MenuItem>
-
-								<MenuItem >
-									<Link to={"./"} className="linkToButton">Se déconnecter</Link>	{/*TODO : Faire la fonction de déconnexion*/}
-								</MenuItem>
-							</Menu>
-						</Box>
+						{!auth && (
+							<div>
+								<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+									<IconButton
+										size="large"
+										aria-label="account of current user"
+										aria-controls="menu-appbar"
+										aria-haspopup="true"
+										onClick={handleOpenNavMenu}
+										color="inherit"
+									>
+										<MenuIcon />
+									</IconButton>
+									<Menu
+										id="menu-appbar"
+										anchorEl={anchorElNav}
+										anchorOrigin={{
+											vertical: 'bottom',
+											horizontal: 'left',
+										}}
+										keepMounted
+										transformOrigin={{
+											vertical: 'top',
+											horizontal: 'left',
+										}}
+										open={Boolean(anchorElNav)}
+										onClose={handleCloseNavMenu}
+										sx={{
+											display: { xs: 'block', md: 'none' },
+										}}
+									>
+										<MenuItem >
+											<Link to={"./"} className="linkToButton">Connexion</Link>
+										</MenuItem>
+		
+										<MenuItem>
+											<Link to={"./signup"} className="linkToButton">Inscription</Link>
+										</MenuItem>
+		
+										<MenuItem >
+											<Link to={"./flux"} className="linkToButton">Flux (BOUTON DE TEST)</Link> {/* TODO : Supprimer le bouton */}
+										</MenuItem>
+									</Menu>
+								</Box>
+								<Typography
+								variant="h6"
+								noWrap
+								component="div"
+								sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+								>
+								Groupomania
+								</Typography>
+								<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+									<MenuItem>
+										<Link to={"./"} className="linkToButton" >Connexion</Link>
+									</MenuItem>
+		
+									<MenuItem >
+										<Link to={"./signup"} className="linkToButton">Inscription</Link>
+									</MenuItem>
+									<MenuItem >
+										<Link to={"./flux"} className="linkToButton">FLUX (BOUTON DE TEST)</Link>	{/* TODO : Supprimer le bouton */}
+									</MenuItem>
+								</Box>
+							</div>
+						)}
+						
+						
+						{auth && (
+							<div>
+								<Box sx={{ flexGrow: 0 }}>
+									<Tooltip title="Gérer mon profil">
+										<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+											<Avatar alt="Icône d'une personne" />
+										</IconButton>
+									</Tooltip>
+									<Menu
+										sx={{ mt: '45px' }}
+										id="menu-appbar"
+										anchorEl={anchorElUser}
+										anchorOrigin={{
+											vertical: 'top',
+											horizontal: 'right',
+										}}
+										keepMounted
+										transformOrigin={{
+											vertical: 'top',
+											horizontal: 'right',
+										}}
+										open={Boolean(anchorElUser)}
+										onClose={handleCloseUserMenu}
+									>
+										<MenuItem>
+											<Link to={"./"} className="linkToButton" >Mon profil</Link>	{/*TODO : Faire la page du profil*/}
+										</MenuItem>
+		
+										<MenuItem >
+											<Link to={"./"} className="linkToButton">Se déconnecter</Link>	{/*TODO : Faire la fonction de déconnexion*/}
+										</MenuItem>
+									</Menu>
+								</Box>
+							</div>
+						)}
 					</Toolbar>
 				</Container>
 			</AppBar>
