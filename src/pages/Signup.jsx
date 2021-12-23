@@ -78,6 +78,7 @@ function signUp(e) {
         .then(response => response.json())
         .then(data => {
             console.log(data);
+            document.location.href="/";
         })
         .catch(error => console.error(error));
 }
