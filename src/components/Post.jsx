@@ -6,6 +6,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import CommentIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import {useEffect} from "react";
+import ReactDOM from "react-dom";
 
 
 const ExpandMore = styled((props) => {
@@ -20,12 +22,34 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function Post(props) {
+
+    useEffect(() => {
+        fetch(`http://localhost:3001/api/comments?post=${props.post.PostID}&from=0&to=5`)
+            .then(function (res) {
+                if (res.ok) {
+                    return res.json();
+                }
+            })
+            .then(function (data) {
+                console.log(data.posts);
+                showSomeComments(from, to, data);
+
+            })
+            .catch(function () {
+                console.error(
+                    "Oops, an error occurred. Please contact alexandre@nitatemic.dev"
+                );
+            });
+
+    }, [])
+    
     let post = {
         Author: props.post.Prenom + ' ' + props.post.Nom,
         CreationDate: props.post.CreationDate,
         Body: props.post.Body,
         initials: props.post.Prenom.substring(0, 1) + props.post.Nom.substring(0, 1),
-        Title : props.post.Title
+        Title : props.post.Title,
+        PostID : props.post.PostID
     };
     const [expanded, setExpanded] = React.useState(false);
 
@@ -66,10 +90,31 @@ export default function Post(props) {
                 </ExpandMore>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent>
-                    {/* TODO : Trouver un moyen de présenter les post*/}
+                <CardContent id="commentsContainer">
                 </CardContent>
             </Collapse>
         </Card>
     );
+}
+
+function getSomeComments(from, to) {
+    return fetch(`http://localhost:3001/api/comments?from=${from}&to=${to}`)
+        .then(response => response.json())
+        .then(data => {
+            showSomeComments(from, to, data);
+        })
+}
+
+function showSomeComments(from, to, data) {
+    for (let i = to; i > from - 1 ; i--) {
+        console.log(i);
+        addPosts(data.comments[i]);
+    }
+}
+
+//Sert à ajouter un post dans le flux (dans l'element Box)
+function addComment(uniquePost) {
+    let CommentVar = <Comment comment={uniqueComment} />;
+    ReactDOM.render(CommentVar, document.getElementById('CommentsContainer'));
+    console.log('Comment rendered');
 }
