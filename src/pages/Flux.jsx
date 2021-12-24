@@ -31,8 +31,7 @@ function Flux() {
     
     return (
     <Container maxWidth="md">
-        <Box id="postsContainer" sx={{ bgcolor: '#cfe8fc', height: '100vh' }}>
-        </Box>
+        <Box id="postsContainer" sx={{ bgcolor: '#cfe8fc', height: '100vh' }} />
     </Container>
     )
 }
