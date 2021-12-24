@@ -8,8 +8,6 @@ import CommentIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 
-{/* TODO : Faire un objet post */}
-
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
     return <IconButton {...other} />;
@@ -26,7 +24,7 @@ export default function Post(props) {
         Author: props.post.Prenom + ' ' + props.post.Nom,
         CreationDate: props.post.CreationDate,
         Body: props.post.Body,
-        initials: 'AL',
+        initials: props.post.Prenom.substring(0, 1) + props.post.Nom.substring(0, 1),
         Title : props.post.Title
     };
     const [expanded, setExpanded] = React.useState(false);
