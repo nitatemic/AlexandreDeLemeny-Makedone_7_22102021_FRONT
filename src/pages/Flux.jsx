@@ -49,7 +49,7 @@ function getSomePosts(from, to) {
 
 function showSomePosts(from, to, data) {
     
-    for (let i = 0; i < (to - from) ; i++) {
+    for (let i = to; i > from - 1 ; i--) {
         console.log(i);
         addPosts(data.posts[i]);
         }
