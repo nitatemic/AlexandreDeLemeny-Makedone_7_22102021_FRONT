@@ -62,7 +62,7 @@ function login(e) {
 			if (data.token) {
 				localStorage.setItem('token', data);
 				console.log("Connexion réussie");
-				window.location.href = "http://localhost:3000/login";
+				window.location.href = "http://localhost:3000/";
 			}
 			//Sinon afficher un message d'erreur
 			else {
