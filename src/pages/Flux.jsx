@@ -1,4 +1,5 @@
 //Page principal, qui affiche tous les posts
+import React from 'react';
 import { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import {Button, Box, Container, TextField} from "@mui/material";
