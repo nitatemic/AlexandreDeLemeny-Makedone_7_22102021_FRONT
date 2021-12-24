@@ -64,7 +64,10 @@ function login(e) {
 				console.log("Connexion réussie");
 				window.location.href = "http://localhost:3000/login";
 			}
-
+			//Sinon afficher un message d'erreur
+			else {
+				console.log("Erreur de connexion");
+			}
 		})
 		.catch(error => console.error(error));
 }
