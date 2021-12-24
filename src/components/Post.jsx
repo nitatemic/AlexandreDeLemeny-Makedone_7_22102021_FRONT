@@ -7,14 +7,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import CommentIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-let post = {
-    id: 1,
-    Author: 'John Doe',
-    CreationDate: '2 days ago',
-    Body: 'https://i.picsum.photos/id/551/1920/1080.jpg?hmac=97885aOrG1xiSBxORRMjXbPqE6U1QthhMCbZVJPBfr8',
-    initials: 'AL',
-    Title : 'Une super photo'
-};
+
 {/* TODO : Faire un objet post */}
 
 const ExpandMore = styled((props) => {
@@ -28,7 +21,14 @@ const ExpandMore = styled((props) => {
     }),
 }));
 
-export default function Post() {
+export default function Post(props) {
+    let post = {
+        Author: props.post.Prenom + ' ' + props.post.Nom,
+        CreationDate: props.post.CreationDate,
+        Body: props.post.Body,
+        initials: 'AL',
+        Title : props.post.Title
+    };
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {
