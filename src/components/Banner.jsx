@@ -8,7 +8,7 @@ import'./css/banner.css';
 
 export default function Banner(props) {
 
-	let auth = true
+	let auth = false; {/*Sert à afficher les boutons de la nav bar*/}
 
 
 
@@ -74,7 +74,7 @@ export default function Banner(props) {
 										}}
 									>
 										<MenuItem >
-											<Link to={"./"} className="linkToButton">Connexion</Link>
+											<Link to={"./login"} className="linkToButton">Connexion</Link>
 										</MenuItem>
 		
 										<MenuItem>
@@ -82,7 +82,7 @@ export default function Banner(props) {
 										</MenuItem>
 		
 										<MenuItem >
-											<Link to={"./flux"} className="linkToButton">Flux (BOUTON DE TEST)</Link> {/* TODO : Supprimer le bouton */}
+											<Link to={"./"} className="linkToButton">Flux (BOUTON DE TEST)</Link> {/* TODO : Supprimer le bouton */}
 										</MenuItem>
 									</Menu>
 								</Box>
@@ -96,14 +96,14 @@ export default function Banner(props) {
 								</Typography>
 								<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 									<MenuItem>
-										<Link to={"./"} className="linkToButton" >Connexion</Link>
+										<Link to={"./login"} className="linkToButton" >Connexion</Link>
 									</MenuItem>
 		
 									<MenuItem >
 										<Link to={"./signup"} className="linkToButton">Inscription</Link>
 									</MenuItem>
 									<MenuItem >
-										<Link to={"./flux"} className="linkToButton">FLUX (BOUTON DE TEST)</Link>	{/* TODO : Supprimer le bouton */}
+										<Link to={"./"} className="linkToButton">FLUX (BOUTON DE TEST)</Link>	{/* TODO : Supprimer le bouton */}
 									</MenuItem>
 								</Box>
 							</div>
@@ -135,11 +135,11 @@ export default function Banner(props) {
 										onClose={handleCloseUserMenu}
 									>
 										<MenuItem>
-											<Link to={"./"} className="linkToButton" >Mon profil</Link>	{/*TODO : Faire la page du profil*/}
+											<Link to={"./login"} className="linkToButton" >Mon profil</Link>	{/*TODO : Faire la page du profil*/}
 										</MenuItem>
 		
 										<MenuItem >
-											<Link to={"./"} className="linkToButton">Se déconnecter</Link>	{/*TODO : Faire la fonction de déconnexion*/}
+											<a onClick="localStorage.removeItem(token)" className="linkToButton">Se déconnecter</a>	{/*TODO : Faire la fonction de déconnexion*/}
 										</MenuItem>
 									</Menu>
 								</Box>

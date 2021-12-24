@@ -58,7 +58,13 @@ function login(e) {
 	})
 		.then(response => response.json())
 		.then(data => {
-			console.log(data);
+			//Si la, réponse est un token le placer dans le localStorage
+			if (data.token) {
+				localStorage.setItem('token', data);
+				console.log("Connexion réussie");
+				window.location.href = "http://localhost:3000/login";
+			}
+
 		})
 		.catch(error => console.error(error));
 }

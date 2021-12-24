@@ -1,16 +1,18 @@
 //Page principal, qui affiche tous les posts
 import React from 'react';
-import './css/Login.css'
-import {Button, TextField} from "@mui/material";
-const imgFolder = './assets/images';
+import {Button, Box, Container, TextField} from "@mui/material";
+import Post from '../components/Post.jsx';
 function Flux() {
     return (
-        <h1>Test</h1>
+    <Container maxWidth="md">
+        <Box sx={{ bgcolor: '#cfe8fc', height: '100vh' }}>
+            <Post />
+        </Box>
+        <h1>Flux</h1>
+    </Container>
     )
 
 }
-
-//Demander à L'API de m'envoyer les posts du numéro X à Y
 
 function getSomePosts(from, to) {
     return fetch(`http://localhost:8080/posts?from=${from}&to=${to}`)
@@ -18,6 +20,10 @@ function getSomePosts(from, to) {
         .then(posts => {
             return posts;
         })
+}
+//Sert à ajouter un post dans le flux (dans l'element Box)
+function addPosts(post) {
+    
 }
 
 export default Flux
