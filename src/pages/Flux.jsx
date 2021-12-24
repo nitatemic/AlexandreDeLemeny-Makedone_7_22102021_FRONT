@@ -16,7 +16,7 @@ function Flux() {
                 }
             })
             .then(function (data) {
-                console.log(data.posts); //FIXME : Il y a un problème ici, la requête s'effectue 2 fois
+                console.log(data.posts);
                 showSomePosts(from, to, data);
                 
             })
@@ -34,9 +34,6 @@ function Flux() {
         </Box>
     </Container>
     )
-
-
-
 }
 
 function getSomePosts(from, to) {
@@ -48,7 +45,6 @@ function getSomePosts(from, to) {
 }
 
 function showSomePosts(from, to, data) {
-    
     for (let i = to; i > from - 1 ; i--) {
         console.log(i);
         addPosts(data.posts[i]);
@@ -59,6 +55,7 @@ function showSomePosts(from, to, data) {
 function addPosts(uniquePost) {
     let postVar = <Post post={uniquePost} />;
     ReactDOM.render(postVar, document.getElementById('postsContainer'));
+    console.log('Post rendered');
 }
 
 export default Flux
