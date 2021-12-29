@@ -58,12 +58,13 @@ function login(e) {
 	})
 		.then(response => response.json())
 		.then(data => {
-			//Si la, réponse est un token le placer dans le localStorage
+			//Si la réponse est un token le placer dans un cookie et rediriger vers la page d'accueil
 			if (data.token) {
-				localStorage.setItem('token', data);
 				console.log("Connexion réussie");
-				window.location.href = "http://localhost:3000/";
+				document.cookie = `${data.token}; path=/`;
+				window.location.href = "/";
 			}
+			
 			//Sinon afficher un message d'erreur
 			else {
 				console.log("Erreur de connexion");

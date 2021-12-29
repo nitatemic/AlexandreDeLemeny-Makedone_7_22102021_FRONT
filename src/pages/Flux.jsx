@@ -6,15 +6,19 @@ import {Button, Box, Container, TextField} from "@mui/material";
 import Post from '../components/Post.jsx';
 
 function Flux() {
-    
+
     const [posts, setPosts] = useState([]);
-    
+
     //Recupérer les 5 derniers posts
     let from = 0;
     let to = 5;
 
     useEffect(() => {
-        fetch('http://localhost:3001/api/posts/0/5')
+        fetch('http://localhost:3001/api/posts/0/5', {
+            headers: {
+                Authorization: `Bearer ${document.cookie}`
+            }
+        } )
             .then(function (res) {
                 if (res.ok) {
                     return res.json();
@@ -24,7 +28,7 @@ function Flux() {
                 console.log(data.posts);
                 setPosts(data.posts)
                 //showSomePosts(from, to, data);
-                
+
             })
             .catch(function () {
                 console.error(

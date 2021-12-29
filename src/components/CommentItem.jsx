@@ -6,6 +6,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 
 
+function didIHaveRightsToDelete(comment, user) {
+    return comment.author.id === user.id;
+}
+
 export default function CommentItem(props) {
     const [isDeleting, setIsDeleting] = React.useState(false);
     console.log("ICI")

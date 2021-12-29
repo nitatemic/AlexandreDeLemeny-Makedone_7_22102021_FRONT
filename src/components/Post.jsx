@@ -10,6 +10,7 @@ import ReactDOM from "react-dom";
 import CommentsGrid from '../components/CommentsGrid.jsx';
 
 
+
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
     return <IconButton {...other} />;
@@ -29,17 +30,16 @@ export default function Post(props) {
     let from = 0;
     let to = 5;
   
-    
+
     let post = {
         Author: props.post.Prenom + ' ' + props.post.Nom,
         CreationDate: props.post.CreationDate,
         Body: props.post.Body,
         initials: props.post.Prenom.substring(0, 1) + props.post.Nom.substring(0, 1),
         Title : props.post.Title,
-        PostID : props.post.PostID
+        PostID : props.post.PostID,
     };
     const [expanded, setExpanded] = React.useState(false);
-
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
