@@ -44,9 +44,6 @@ export default function Post(props) {
         setExpanded(!expanded);
     };
 
-
-
-    
     return (
         <Card>
             <CardHeader

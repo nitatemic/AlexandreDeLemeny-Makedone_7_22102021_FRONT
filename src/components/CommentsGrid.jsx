@@ -12,6 +12,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {useEffect} from "react";
+import CommentItem from '../components/CommentItem.jsx';
 
 function generate(element) {
     return [0, 1, 2].map((value) =>
@@ -21,13 +22,10 @@ function generate(element) {
     );
 }
 
-const Demo = styled('div')(({ theme }) => ({
-    backgroundColor: theme.palette.background.paper,
-}));
-
 export default function CommentsGrid(props) {
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(true);
+    const [comments, setComments] = React.useState([]);
 
     let from = 0;
     let to = 5;
@@ -41,7 +39,7 @@ export default function CommentsGrid(props) {
             })
             .then(function (data) {
                 console.log(data.comments);
-                console.log(props.post.PostID);
+                console.log(`%c ↗️ Comments from the post number ${props.post.PostID} fetched successfully !`, 'color: #0df904');
                 setComments(data.comments);
 
             })
@@ -52,30 +50,18 @@ export default function CommentsGrid(props) {
             });
 
     }, [])
-    
+    //List qui ajoutes des components CommentItem avec les commentaires
     return (
         <Box>
             <List dense={dense}>
-                {generate(
-                    <ListItem
-                        secondaryAction={
-                            <IconButton edge="end" aria-label="delete">
-                                <DeleteIcon/>
-                            </IconButton>
-                        }
-                    >
-                        <ListItemAvatar>
-                            <Avatar>
-                                {props.post.Prenom.substring(0, 1) + props.post.Nom.substring(0, 1)}
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText
-                            primary="Single-line item"
-                            secondary={secondary ? 'Secondary text' : null}
+                {comments.map((comment) => {
+                    return (
+                        <CommentItem
+                            props={comment}
                         />
-                    </ListItem>,
-                )}
+                    );
+                })}
             </List>
         </Box>
-    )
+    );
 }
