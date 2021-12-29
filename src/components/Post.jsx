@@ -6,7 +6,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import CommentIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import ReactDOM from "react-dom";
 
 
@@ -23,16 +23,23 @@ const ExpandMore = styled((props) => {
 
 export default function Post(props) {
 
+    const [comments, setComments] = useState([]);
+
+    //Recupérer les 5 derniers posts
+    let from = 0;
+    let to = 5;
+
     useEffect(() => {
-        fetch(`http://localhost:3001/api/comments?post=${props.post.PostID}&from=0&to=5`)
+        fetch(`http://localhost:3001/api/comments/${props.post.PostID}/${from}/${to}`)
             .then(function (res) {
                 if (res.ok) {
                     return res.json();
                 }
             })
             .then(function (data) {
-                console.log(data.posts);
-                showSomeComments(from, to, data);
+                console.log(data.comments);
+                console.log(props.post.PostID);
+                setComments(data.comments);
 
             })
             .catch(function () {
@@ -57,6 +64,7 @@ export default function Post(props) {
         setExpanded(!expanded);
     };
 
+    
     return (
         <Card>
             <CardHeader
@@ -97,24 +105,3 @@ export default function Post(props) {
     );
 }
 
-function getSomeComments(from, to) {
-    return fetch(`http://localhost:3001/api/comments?from=${from}&to=${to}`)
-        .then(response => response.json())
-        .then(data => {
-            showSomeComments(from, to, data);
-        })
-}
-
-function showSomeComments(from, to, data) {
-    for (let i = to; i > from - 1 ; i--) {
-        console.log(i);
-        addPosts(data.comments[i]);
-    }
-}
-
-//Sert à ajouter un post dans le flux (dans l'element Box)
-function addComment(uniquePost) {
-    let CommentVar = <Comment comment={uniqueComment} />;
-    ReactDOM.render(CommentVar, document.getElementById('CommentsContainer'));
-    console.log('Comment rendered');
-}
