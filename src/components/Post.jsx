@@ -3,11 +3,11 @@ import { styled } from '@mui/material/styles';
 import {Avatar, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, IconButton, Typography} from '@mui/material/';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
 import CommentIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {useEffect, useState} from "react";
 import ReactDOM from "react-dom";
+import CommentsGrid from '../components/CommentsGrid.jsx';
 
 
 const ExpandMore = styled((props) => {
@@ -29,26 +29,7 @@ export default function Post(props) {
     let from = 0;
     let to = 5;
 
-    useEffect(() => {
-        fetch(`http://localhost:3001/api/comments/${props.post.PostID}/${from}/${to}`)
-            .then(function (res) {
-                if (res.ok) {
-                    return res.json();
-                }
-            })
-            .then(function (data) {
-                console.log(data.comments);
-                console.log(props.post.PostID);
-                setComments(data.comments);
-
-            })
-            .catch(function () {
-                console.error(
-                    "Oops, an error occurred. Please contact alexandre@nitatemic.dev"
-                );
-            });
-
-    }, [])
+    
     
     let post = {
         Author: props.post.Prenom + ' ' + props.post.Nom,
@@ -63,6 +44,8 @@ export default function Post(props) {
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+
+
 
     
     return (
@@ -99,6 +82,7 @@ export default function Post(props) {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent id="commentsContainer">
+                    <CommentsGrid post={props.post}/>
                 </CardContent>
             </Collapse>
         </Card>
