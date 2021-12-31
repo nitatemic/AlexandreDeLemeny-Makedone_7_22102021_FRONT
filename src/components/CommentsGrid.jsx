@@ -61,7 +61,7 @@ export default function CommentsGrid(props) {
                 {comments.map((comment) => {
                     return (
                         <CommentItem
-                            props={comment}
+                            comment={comment}
                         />
                     );
                 })}

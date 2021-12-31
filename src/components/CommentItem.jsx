@@ -4,8 +4,6 @@ import {useEffect, useState} from "react";
 import {ListItem, ListItemAvatar, ListItemIcon, ListItemText, Avatar, IconButton, ListItemSecondaryAction} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-
-
 function didIHaveRightsToDelete(comment, user) {
     return comment.author.id === user.id;
 }
@@ -13,7 +11,6 @@ function didIHaveRightsToDelete(comment, user) {
 export default function CommentItem(props) {
     const [isDeleting, setIsDeleting] = React.useState(false);
     console.log("ICI")
-    console.log(props.props.Prenom);
 
     useEffect(() => {
         setIsDeleting(false);
@@ -28,12 +25,12 @@ export default function CommentItem(props) {
         <ListItem>
             <ListItemAvatar>
                 <Avatar>
-                    {props.props.Prenom.substring(0, 1) + props.props.Nom.substring(0, 1)}
+                    {props.comment.Prenom.substring(0, 1) + props.comment.Nom.substring(0, 1)}
                 </Avatar>
             </ListItemAvatar>
             <ListItemText
-                primary={props.props.Prenom + ' ' + props.props.Nom}
-                secondary={props.props.CommentBody}
+                primary={props.comment.Prenom + ' ' + props.comment.Nom}
+                secondary={props.comment.CommentBody}
             />
             <ListItemSecondaryAction>
                 <IconButton edge="end" aria-label="delete" onClick={handleDelete} disabled={isDeleting}>
