@@ -23,6 +23,12 @@ function Flux() {
                 if (res.ok) {
                     return res.json();
                 }
+                else if (res.status === 401) {
+                    window.location.href = "/login";
+                }
+                else {
+                    throw new Error('Something went wrong');
+                }
             })
             .then(function (data) {
                 console.log(data.posts);
