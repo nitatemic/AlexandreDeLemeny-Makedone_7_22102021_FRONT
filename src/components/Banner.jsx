@@ -3,7 +3,7 @@ import {AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, T
 import MenuIcon from '@mui/icons-material/Menu';
 
 import {Link} from "react-router-dom";
-import'./css/banner.css';
+import './css/banner.css';
 
 
 export default function Banner(props) {

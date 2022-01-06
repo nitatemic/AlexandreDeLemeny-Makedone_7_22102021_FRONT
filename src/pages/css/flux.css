@@ -1,6 +1,7 @@
-.MuiFab-root {
+#root > div > div.MuiBox-root.css-0 > button {
     position: fixed;
     bottom: 3%;
     right: 3%;
     z-index: 1000;
 }
+
