@@ -9,8 +9,6 @@ import {useEffect, useState} from "react";
 import ReactDOM from "react-dom";
 import CommentsGrid from '../components/CommentsGrid.jsx';
 
-
-
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
     return <IconButton {...other} />;
@@ -45,7 +43,8 @@ export default function Post(props) {
     };
 
     return (
-        <Card>
+        <Card
+            className="MuiCard-root">
             <CardHeader
                 avatar={
                     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -84,4 +83,3 @@ export default function Post(props) {
         </Card>
     );
 }
-

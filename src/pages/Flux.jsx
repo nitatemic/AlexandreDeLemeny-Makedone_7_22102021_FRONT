@@ -2,8 +2,10 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import {Button, Box, Container, TextField} from "@mui/material";
+import {Button, Box, Container, Fab, TextField} from "@mui/material";
 import Post from '../components/Post.jsx';
+import AddIcon from '@mui/icons-material/Add';
+import'./css/flux.css';
 
 function Flux() {
 
@@ -12,6 +14,7 @@ function Flux() {
     //Recupérer les 5 derniers posts
     let from = 0;
     let to = 5;
+
 
     useEffect(() => {
         fetch('http://localhost:3001/api/posts/0/5', {
@@ -45,13 +48,19 @@ function Flux() {
     }, [])
     
     return (
-    <Container maxWidth="md">
-        <Box id="postsContainer">
-            {posts.map(post => (
-                <Post key={post.id} post={post} />
-            ))}
+        <Box>
+            <Container maxWidth="md">
+            <Box id="postsContainer">
+                {posts.map(post => (
+                    <Post key={post.id} post={post} />
+                ))}
+            </Box>
+        </Container>
+    <Fab variant="extended">
+        <AddIcon sx={{ mr: 1 }} />
+        Navigate
+    </Fab>
         </Box>
-    </Container>
     )
 }
 
