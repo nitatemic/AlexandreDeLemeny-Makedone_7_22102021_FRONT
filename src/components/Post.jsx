@@ -57,7 +57,7 @@ export default function Post(props) {
             />
             <CardMedia
                 component="img"
-                height="194"
+                height="100%"
                 image={post.Body} 
                 alt={post.Title}
             />

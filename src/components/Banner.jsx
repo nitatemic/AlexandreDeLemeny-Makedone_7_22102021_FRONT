@@ -8,9 +8,7 @@ import'./css/banner.css';
 
 export default function Banner(props) {
 
-	let auth = false; {/*Sert à afficher les boutons de la nav bar*/}
-
-
+	let auth = false;
 
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
