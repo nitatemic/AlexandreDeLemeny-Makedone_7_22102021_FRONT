@@ -33,7 +33,7 @@ export default function CommentsGrid(props) {
     useEffect(() => {
         fetch(`http://localhost:3001/api/comments/${props.post.PostID}/${from}/${to}`, {
             headers: {
-                Authorization: `Bearer ${document.cookie}`
+                Authorization: `Bearer ${document.cookie.split('=')[1]}`
             }
         })
             .then(function (res) {
@@ -41,8 +41,9 @@ export default function CommentsGrid(props) {
                     return res.json();
                 }
                 else {
-                    throw new Error("Network response was not ok.");
-                    //redirect to login
+                    //Supprimer le cookie
+                    document.cookie = `Bearer=; max-age=0; path=/;`;
+                    //Rediriger vers la page de connexion
                     window.location.href = "/login";
                 }
             })
