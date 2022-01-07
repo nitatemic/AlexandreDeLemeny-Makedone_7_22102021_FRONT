@@ -10,8 +10,6 @@ function didIHaveRightsToDelete(comment, user) {
 
 export default function CommentItem(props) {
     const [isDeleting, setIsDeleting] = React.useState(false);
-    console.log("ICI")
-
     useEffect(() => {
         setIsDeleting(false);
     }, [props]);
