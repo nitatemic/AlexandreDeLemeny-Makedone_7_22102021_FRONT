@@ -10,11 +10,7 @@ import './css/banner.css';
 export default function Banner(props) {
 
 	let auth;
-	if(document.cookie.indexOf('Bearer') !== -1) {
-		auth = true;
-	} else {
-		auth = false;
-	}
+	auth = document.cookie.indexOf('Bearer') !== -1 ? true : false;
 	
 	const [isLogged, setIsLogged] = React.useState(false);
 			
