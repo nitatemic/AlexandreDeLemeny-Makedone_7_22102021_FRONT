@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles';
 import {Avatar, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, IconButton, Typography} from '@mui/material/';
 import { red } from '@mui/material/colors';
 import CommentIcon from '@mui/icons-material/ExpandMore';
-import {useEffect, useState} from "react";
 import CommentsGrid from '../components/CommentsGrid.jsx';
 import * as timeago from 'timeago.js';
 
