@@ -8,6 +8,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {useEffect, useState} from "react";
 import ReactDOM from "react-dom";
 import CommentsGrid from '../components/CommentsGrid.jsx';
+import * as timeago from 'timeago.js';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -41,7 +42,7 @@ export default function Post(props) {
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-
+    
     return (
         <Card
             className="MuiCard-root">
@@ -52,7 +53,7 @@ export default function Post(props) {
                     </Avatar>
                 }
                 title={post.Title}
-                subheader={post.CreationDate}
+                subheader={timeago.format(post.CreationDate, 'fr')} //FIXME: Afficher en français
             />
             <CardMedia
                 component="img"
