@@ -108,7 +108,7 @@ export default function Flux() {
             <Container maxWidth="md">
             <Box id="postsContainer">
                 {posts.map(post => (
-                    <Post key={post.id} post={post} />
+                    <Post key={post.PostID} post={post} />
                 ))}
             </Box>
             </Container>

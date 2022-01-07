@@ -49,6 +49,7 @@ export default function CommentsGrid(props) {
                 {comments.map((comment) => {
                     return (
                         <CommentItem
+                            key={comment.CommentID}
                             comment={comment}
                         />
                     );
