@@ -2,11 +2,8 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import {Avatar, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, IconButton, Typography} from '@mui/material/';
 import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import CommentIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {useEffect, useState} from "react";
-import ReactDOM from "react-dom";
 import CommentsGrid from '../components/CommentsGrid.jsx';
 import * as timeago from 'timeago.js';
 
@@ -22,14 +19,7 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function Post(props) {
-
-    const [comments, setComments] = useState([]);
-
-    //Recupérer les 5 derniers posts
-    let from = 0;
-    let to = 5;
-  
-
+ 
     let post = {
         Author: props.post.Prenom + ' ' + props.post.Nom,
         CreationDate: props.post.CreationDate,

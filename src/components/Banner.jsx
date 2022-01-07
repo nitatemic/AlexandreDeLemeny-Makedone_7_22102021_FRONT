@@ -7,13 +7,11 @@ import './css/banner.css';
 
 
 
-export default function Banner(props) {
+export default function Banner() {
 
 	let auth;
 	auth = document.cookie.indexOf('Bearer') !== -1 ? true : false;
-	
-	const [isLogged, setIsLogged] = React.useState(false);
-			
+				
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
 

@@ -1,36 +1,18 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import DeleteIcon from '@mui/icons-material/Delete';
-import {useEffect} from "react";
 import CommentItem from '../components/CommentItem.jsx';
-
-function generate(element) {
-    return [0, 1, 2].map((value) =>
-        React.cloneElement(element, {
-            key: value,
-        }),
-    );
-}
+import {useEffect} from 'react';
 
 export default function CommentsGrid(props) {
     const [dense, setDense] = React.useState(false);
-    const [secondary, setSecondary] = React.useState(true);
     const [comments, setComments] = React.useState([]);
 
-    let from = 0;
-    let to = 5;
+
 
     useEffect(() => {
+        let from = 0;
+        let to = 5;
         fetch(`http://localhost:3001/api/comments/${props.post.PostID}/${from}/${to}`, {
             headers: {
                 Authorization: `Bearer ${document.cookie.split('=')[1]}`
