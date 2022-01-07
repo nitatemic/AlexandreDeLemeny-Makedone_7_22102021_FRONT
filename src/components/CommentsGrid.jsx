@@ -40,6 +40,11 @@ export default function CommentsGrid(props) {
                 if (res.ok) {
                     return res.json();
                 }
+                else {
+                    throw new Error("Network response was not ok.");
+                    //redirect to login
+                    window.location.href = "/login";
+                }
             })
             .then(function (data) {
                 console.log(data.comments);

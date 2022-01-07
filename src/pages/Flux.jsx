@@ -47,7 +47,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: 'background.paper',
+    bgcolor: 'rgb(0 30 60)',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
@@ -71,7 +71,7 @@ export default function Flux() {
     useEffect(() => {
         fetch('http://localhost:3001/api/posts/0/5', {
             headers: {
-                Authorization: `Bearer ${document.cookie}`
+                Authorization: `Bearer ${document.cookie.split('=')[1]}`
             }
         } )
             .then(function (res) {
@@ -79,6 +79,9 @@ export default function Flux() {
                     return res.json();
                 }
                 else if (res.status === 401) {
+                    //Supprimer le cookie
+                    document.cookie = `Bearer=; max-age=0; path=/;`;
+                    //Rediriger vers la page de connexion
                     window.location.href = "/login";
                 }
                 else {
@@ -88,7 +91,8 @@ export default function Flux() {
             .then(function (data) {
                 console.log(data.posts);
                 setPosts(data.posts)
-                //showSomePosts(from, to, data);
+                document.cookie = `Bearer=${data.token}; max-age=${720 * 60}; path=/;`;
+                
 
             })
             .catch(function () {
@@ -125,12 +129,10 @@ export default function Flux() {
             >
                 <Fade in={open}>
                     <Box sx={style}>
-                        <Typography id="spring-modal-title" variant="h6" component="h2">
-                            Text in a modal
+                        <Typography id="spring-modal-title white" variant="h6" component="h2">
+                            Ajouter un post
                         </Typography>
-                        <Typography id="spring-modal-description" sx={{ mt: 2 }}>
-                            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                        </Typography>
+                        <TextField fullWidth label="Titre" id="fullWidth" />
                     </Box>
                 </Fade>
             </Modal>

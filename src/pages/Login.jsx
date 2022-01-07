@@ -1,11 +1,15 @@
 import React from 'react';
 import './css/Login.css'
-import {Button, TextField, ThemeProvider} from "@mui/material";
+import {Button, Box, Snackbar, Stack, TextField, ThemeProvider} from "@mui/material";
+import MuiAlert from '@mui/material/Alert';
 import darkTheme from "./global";
 import './css/global.css'
 
+import useForceUpdate from '../components/Banner.jsx'
+
 function Login() {
 	return (
+		<Box>
 			<section className="vh-100">
 				<div className="container-fluid h-custom">
 					<div className="row d-flex justify-content-center align-items-center h-100">
@@ -33,6 +37,7 @@ function Login() {
 					</div>
 				</div>
 			</section>
+	</Box>
 	)
 }
 
@@ -61,10 +66,10 @@ function login(e) {
 			//Si la réponse est un token le placer dans un cookie et rediriger vers la page d'accueil
 			if (data.token) {
 				console.log("Connexion réussie");
-				document.cookie = `${data.token}; path=/`;
+				//Cookie qui expire dans 12 heures
+				document.cookie = `Bearer=${data.token}; max-age=${720 * 60}; path=/;`;
 				window.location.href = "/";
 			}
-			
 			//Sinon afficher un message d'erreur
 			else {
 				console.log("Erreur de connexion");

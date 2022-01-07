@@ -6,10 +6,18 @@ import {Link} from "react-router-dom";
 import './css/banner.css';
 
 
+
 export default function Banner(props) {
 
-	let auth = false;
-
+	let auth;
+	if(document.cookie.indexOf('Bearer') !== -1) {
+		auth = true;
+	} else {
+		auth = false;
+	}
+	
+	const [isLogged, setIsLogged] = React.useState(false);
+			
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -27,7 +35,7 @@ export default function Banner(props) {
 	const handleCloseUserMenu = () => {
 		setAnchorElUser(null);
 	};
-
+	
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static">
@@ -78,10 +86,6 @@ export default function Banner(props) {
 										<MenuItem>
 											<Link to={"./signup"} className="linkToButton">Inscription</Link>
 										</MenuItem>
-		
-										<MenuItem >
-											<Link to={"./"} className="linkToButton">Flux (BOUTON DE TEST)</Link> {/* TODO : Supprimer le bouton */}
-										</MenuItem>
 									</Menu>
 								</Box>
 								<Typography
@@ -99,9 +103,6 @@ export default function Banner(props) {
 		
 									<MenuItem >
 										<Link to={"./signup"} className="linkToButton">Inscription</Link>
-									</MenuItem>
-									<MenuItem >
-										<Link to={"./"} className="linkToButton">FLUX (BOUTON DE TEST)</Link>	{/* TODO : Supprimer le bouton */}
 									</MenuItem>
 								</Box>
 							</div>
@@ -137,7 +138,7 @@ export default function Banner(props) {
 										</MenuItem>
 		
 										<MenuItem >
-											<a onClick="localStorage.removeItem(token)" className="linkToButton">Se déconnecter</a>	{/*TODO : Faire la fonction de déconnexion*/}
+											<a onClick={eraseCookie} className="linkToButton">Se déconnecter</a>	{/*TODO : Faire la fonction de déconnexion*/}
 										</MenuItem>
 									</Menu>
 								</Box>
@@ -149,3 +150,8 @@ export default function Banner(props) {
 		</Box>
 	);
 }
+	function eraseCookie() {
+		document.cookie = `Bearer=; max-age=0; path=/;`;
+		//Rediriger vers la page de connexion
+		window.location.href = "/login";
+	}

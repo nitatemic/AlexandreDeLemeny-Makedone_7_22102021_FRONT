@@ -5,3 +5,7 @@
     z-index: 1000;
 }
 
+#spring-modal-title\ white {
+    color: white;
+    margin-bottom: 1rem;
+}
