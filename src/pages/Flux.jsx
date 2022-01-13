@@ -132,7 +132,18 @@ export default function Flux() {
                         <Typography id="spring-modal-title white" variant="h6" component="h2">
                             Ajouter un post
                         </Typography>
-                        <TextField fullWidth label="Titre" id="fullWidth" />
+                        <form>
+                            <TextField fullWidth label="Titre" id="fullWidth" />
+
+                            <div className="drag-image">
+                                <div className="icon"><i className="fas fa-cloud-upload-alt"></i></div>
+                                <h6>Glissez-déposez un fichier</h6> <span>OU</span>
+                                <button>Sélectionner un fichier</button>
+                                <input type="file" hidden/>
+                            </div>
+                            <input type="submit"/>
+                        </form>
+
                     </Box>
                 </Fade>
             </Modal>
