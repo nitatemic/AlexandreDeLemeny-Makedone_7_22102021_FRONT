@@ -8,7 +8,7 @@ import Post from '../components/Post.jsx';
 import AddIcon from '@mui/icons-material/Add';
 import { useSpring, animated } from '@react-spring/web';
 import PropTypes from 'prop-types';
-
+import DragNDrop from './../components/DragNDrop.jsx';
 
 const Fade = React.forwardRef(function Fade(props, ref) {
     const { in: open, children, onEnter, onExited, ...other } = props;
@@ -100,9 +100,7 @@ export default function Flux() {
                     "Oops, an error occurred. Please contact alexandre@nitatemic.dev"
                 );
             });
-
-    }, [])
-    
+    }, [])    
     return (
         <Box>
             <Container maxWidth="md">
@@ -133,20 +131,21 @@ export default function Flux() {
                             Ajouter un post
                         </Typography>
                         <form>
-                            <TextField fullWidth label="Titre" id="fullWidth" />
-
-                            <div className="drag-image">
-                                <div className="icon"><i className="fas fa-cloud-upload-alt"></i></div>
-                                <h6>Glissez-déposez un fichier</h6> <span>OU</span>
-                                <button>Sélectionner un fichier</button>
-                                <input type="file" hidden/>
-                            </div>
-                            <input type="submit"/>
+                            <TextField fullWidth label="Titre" id="title" />
+                            <br></br>
+                            <TextField fullWidth label="Description" id="description" />
+                            <DragNDrop />
+                            <input id="submit" type="submit" hidden/>
+                            <Button fullWidth id="btnSubmit" variant="outlined">Poster !</Button>
                         </form>
-
                     </Box>
                 </Fade>
             </Modal>
         </Box>
     )
+    //Sert pour le bouton de la modal
+    document.getElementById('btnSubmit').addEventListener("click", function(event) {
+        event.preventDefault();
+        document.getElementById("submit").click();
+    });
 }
