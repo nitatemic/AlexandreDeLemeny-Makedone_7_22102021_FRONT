@@ -63,6 +63,8 @@ export default function Flux() {
 
     const [posts, setPosts] = useState([]);
 
+    let fileToUpload = null;
+    
     //Recupérer les 5 derniers posts
     let from = 0;
     let to = 5;
@@ -100,7 +102,63 @@ export default function Flux() {
                     "Oops, an error occurred. Please contact alexandre@nitatemic.dev"
                 );
             });
-    }, [])    
+
+    }, [])
+        function handleSubmit(event) {
+        let fileToUpload = document.getElementById('fileToUpload')
+            event.preventDefault();
+        //Recuperer le fichier
+        let file = fileToUpload.files[0];
+        //Creer l'objet FormData
+        let formData = new FormData();
+        formData.append('file', file);
+
+            console.log("ICI")
+            console.log(onFileUpload);
+
+            fetch(`http://localhost:3001/api/posts`, {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${document.cookie.split('=')[1]}`,
+                    'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+                },
+                body: formData
+            })
+                .then(function (res) {
+                    if (res.ok) {
+                        return res.json();
+                    }
+                    else if (res.status === 401) {
+                        //Supprimer le cookie
+                        document.cookie = `Bearer=; max-age=0; path=/;`;
+                        //Rediriger vers la page de connexion
+                        window.location.href = "/login";
+                    }
+                    else {
+                        throw new Error('Something went wrong');
+                    }
+                })
+                .then(function (data) {
+                    console.log(data.posts);
+                    setPosts(data.posts)
+                    document.cookie = `Bearer=${data.token}; max-age=${720 * 60}; path=/;`;
+
+
+                })
+                .catch(function () {
+                    console.error(
+                        "Oops, an error occurred. Please contact"
+                    );
+                })
+        }
+        
+        function clickOnSubmit(e) {
+            e.preventDefault();
+            console.log('You clicked submit.');
+            document.getElementById("submit").click()
+        }
+        
+        
     return (
         <Box>
             <Container maxWidth="md">
@@ -130,22 +188,15 @@ export default function Flux() {
                         <Typography id="spring-modal-title white" variant="h6" component="h2">
                             Ajouter un post
                         </Typography>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <TextField fullWidth label="Titre" id="title" />
-                            <br></br>
-                            <TextField fullWidth label="Description" id="description" />
-                            <DragNDrop />
+                            <DragNDrop fileToUpload={fileToUpload} />
                             <input id="submit" type="submit" hidden/>
-                            <Button fullWidth id="btnSubmit" variant="outlined">Poster !</Button>
+                            <Button fullWidth id="btnSubmit" onClick={clickOnSubmit} variant="outlined">Poster !</Button>
                         </form>
                     </Box>
                 </Fade>
             </Modal>
         </Box>
     )
-    //Sert pour le bouton de la modal
-    document.getElementById('btnSubmit').addEventListener("click", function(event) {
-        event.preventDefault();
-        document.getElementById("submit").click();
-    });
 }

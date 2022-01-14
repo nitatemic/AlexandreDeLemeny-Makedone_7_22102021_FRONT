@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import './css/dragNDrop.css';
 import { Button }  from "@mui/material"
 
-export default function DragNDrop() {
+export default function DragNDrop(props) {
     useEffect(() => {
+        console.log(props);
         const dropArea = document.querySelector(".drag-image"),
             dragText = dropArea.querySelector("h6"),
             button = dropArea.querySelector("button"),
@@ -18,6 +19,8 @@ export default function DragNDrop() {
         input.addEventListener("change", function () {
             file = this.files[0];
             dropArea.classList.add("active");
+            console.log(file);
+            props.fileToUpload = file;
             viewfile(file);
         });
 
@@ -46,7 +49,7 @@ export default function DragNDrop() {
             <div className="icon"><i className="fas fa-cloud-upload-alt"></i></div>
             <h6>Glissez-déposez un fichier</h6> <span>OU</span>
             <Button variant="outlined" id="uploadButton">Sélectionner un fichier</Button>
-            <input type="file" hidden/>
+            <input type="file" id="fileToUpload" hidden/>
         </div>
     )
 }
