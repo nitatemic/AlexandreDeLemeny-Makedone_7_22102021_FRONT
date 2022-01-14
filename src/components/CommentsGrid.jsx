@@ -2,6 +2,7 @@ import * as React from 'react';
 import CommentItem from '../components/CommentItem.jsx';
 import {useEffect} from 'react';
 import {Box, List, TextField} from '@mui/material/';
+import AddComment from './AddComment.jsx';
 
 export default function CommentsGrid(props) {
     const [dense, setDense] = React.useState(false);
@@ -45,7 +46,7 @@ export default function CommentsGrid(props) {
     return (
         <Box>
             <List dense={dense}>
-                <TextField id="outlined-basic" label="Ajouter un commentaire" variant="outlined" fullWidth />
+                <AddComment post={props.post} />
                 {comments.map((comment) => {
                     return (
                         <CommentItem
