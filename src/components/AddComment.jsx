@@ -8,21 +8,29 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Tooltip from '@mui/material/Tooltip';
 
-export default function AddComment() {
+export default function AddComment(props) {
 
-
+//Fonction pour envoyer un commentaire au serveur
     const handleClickSendComment = () => {
-        setValues({
-            ...values,
-            showPassword: !values.showPassword,
-        });
+        //Recuperation du commentaire
+        const comment = document.getElementById('addCommentInput').value;
+        //Envoi du commentaire au serveur
+        fetch('http://localhost:3001/api/comments', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${document.cookie.split('=')[1]}`,
+            },
+            body: JSON.stringify({
+                CommentBody: comment, PostID: props.post.PostID
+            })
+        })
     };
 
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-
-
+    
     return (
         <FormControl 
             variant="outlined" 
