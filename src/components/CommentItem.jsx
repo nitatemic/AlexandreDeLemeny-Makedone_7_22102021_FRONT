@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import {useEffect, useState} from "react";
-import {ListItem, ListItemAvatar, ListItemIcon, ListItemText, Avatar, IconButton, ListItemSecondaryAction} from '@mui/material';
+import {ListItem, ListItemAvatar, ListItemIcon, ListItemText, Avatar, IconButton, ListItemSecondaryAction, Tooltip} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 function didIHaveRightsToDelete(comment, user) {
@@ -32,7 +32,9 @@ export default function CommentItem(props) {
             />
             <ListItemSecondaryAction>
                 <IconButton edge="end" aria-label="delete" onClick={handleDelete} disabled={isDeleting}>
-                    <DeleteIcon />
+                    <Tooltip title="Supprimer">
+                        <DeleteIcon />
+                    </Tooltip>
                 </IconButton>
             </ListItemSecondaryAction>
         </ListItem>
