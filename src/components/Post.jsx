@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import {Avatar, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, IconButton, Typography} from '@mui/material/';
+import {Avatar, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, IconButton, Tooltip, Typography} from '@mui/material/';
 import { red } from '@mui/material/colors';
 import CommentIcon from '@mui/icons-material/ExpandMore';
 import CommentsGrid from '../components/CommentsGrid.jsx';
@@ -62,7 +62,9 @@ export default function Post(props) {
                     aria-expanded={expanded}
                     aria-label="show more"
                 >
-                    <CommentIcon />
+                    <Tooltip title="Afficher/Masquer les commentaires">
+                        <CommentIcon />
+                    </Tooltip>
                 </ExpandMore>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
