@@ -40,6 +40,7 @@ export default function DragNDrop(props) {
             event.preventDefault();
 
             file = event.dataTransfer.files[0];
+            props.fileUpload(file);
             viewfile(file);
         });
 

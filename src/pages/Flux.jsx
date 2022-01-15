@@ -59,6 +59,7 @@ export default function Flux() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [file, setFile] = useState(null);
     /*------Fin Modal------*/
 
     const [posts, setPosts] = useState([]);
@@ -105,17 +106,15 @@ export default function Flux() {
 
     }, [])
         function handleSubmit(event) {
-        let fileToUpload = document.getElementById('fileToUpload')
             event.preventDefault();
-        //Recuperer le fichier
-        let file = fileToUpload.files[0];
+
         //Creer l'objet FormData
         let formData = new FormData();
-        formData.append('file', file);
-
-            console.log("ICI")
-            console.log(onFileUpload);
-
+        formData.append('image', file);
+        formData.append('title', 'test');
+            console.log(formData.get('image'));
+            console.log(formData.get('title'));
+            
             fetch(`http://localhost:3001/api/posts`, {
                 method: 'POST',
                 headers: {
@@ -190,7 +189,7 @@ export default function Flux() {
                         </Typography>
                         <form onSubmit={handleSubmit}>
                             <TextField fullWidth label="Titre" id="title" />
-                            <DragNDrop fileToUpload={fileToUpload} />
+                            <DragNDrop fileUpload={setFile} />
                             <input id="submit" type="submit" hidden/>
                             <Button fullWidth id="btnSubmit" onClick={clickOnSubmit} variant="outlined">Poster !</Button>
                         </form>
