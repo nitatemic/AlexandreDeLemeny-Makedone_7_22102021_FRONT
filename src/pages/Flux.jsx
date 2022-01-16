@@ -110,8 +110,9 @@ export default function Flux() {
 
         //Creer l'objet FormData
         let formData = new FormData();
-        formData.append('image', file);
-        formData.append('title', 'test');
+        formData.append('title', document.getElementById('title').value);
+        formData.append('image', file, file.name);
+
 
             console.log(formData.get('image'));
             console.log(formData.get('title'));
@@ -120,7 +121,6 @@ export default function Flux() {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${document.cookie.split('=')[1]}`,
-                    'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
                 },
                 body: formData
             })
@@ -137,18 +137,6 @@ export default function Flux() {
                     else {
                         throw new Error('Something went wrong');
                     }
-                })
-                .then(function (data) {
-                    console.log(data.posts);
-                    setPosts(data.posts)
-                    document.cookie = `Bearer=${data.token}; max-age=${720 * 60}; path=/;`;
-
-
-                })
-                .catch(function () {
-                    console.error(
-                        "Oops, an error occurred. Please contact"
-                    );
                 })
         }
         
@@ -189,7 +177,7 @@ export default function Flux() {
                             Ajouter un post
                         </Typography>
                         <form onSubmit={handleSubmit}>
-                            <TextField fullWidth label="Titre" id="title" />
+                            <TextField fullWidth label="Titre" minlength="1" spellcheck="true" id="title" />
                             <DragNDrop fileUpload={setFile} />
                             <input id="submit" type="submit" hidden/>
                             <Button fullWidth id="btnSubmit" onClick={clickOnSubmit} variant="outlined">Poster !</Button>
