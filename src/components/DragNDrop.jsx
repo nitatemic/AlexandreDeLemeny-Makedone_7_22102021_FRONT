@@ -5,22 +5,22 @@ import { Button }  from "@mui/material"
 
 export default function DragNDrop(props) {
     useEffect(() => {
-        console.log(props);
         const dropArea = document.querySelector(".drag-image"),
             dragText = dropArea.querySelector("h6"),
             button = dropArea.querySelector("button"),
             input = dropArea.querySelector("input");
             let file;
+            
         button.addEventListener("click", function(event) {
             event.preventDefault();
             input.click();
         });
 
-        input.addEventListener("change", function () {
-            file = this.files[0];
+        input.addEventListener("change", () => {
             dropArea.classList.add("active");
+            file = input.files[0];
+            props.fileUpload(file);
             console.log(file);
-            props.fileToUpload = file;
             viewfile(file);
         });
 
@@ -38,9 +38,9 @@ export default function DragNDrop(props) {
 
         dropArea.addEventListener("drop", (event) => {
             event.preventDefault();
-
             file = event.dataTransfer.files[0];
             props.fileUpload(file);
+            console.log(file);
             viewfile(file);
         });
 

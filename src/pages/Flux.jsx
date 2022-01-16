@@ -112,6 +112,7 @@ export default function Flux() {
         let formData = new FormData();
         formData.append('image', file);
         formData.append('title', 'test');
+
             console.log(formData.get('image'));
             console.log(formData.get('title'));
             
