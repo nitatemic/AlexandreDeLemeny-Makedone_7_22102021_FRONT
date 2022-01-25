@@ -1,6 +1,6 @@
 import React from "react";
 import "../index.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@emotion/react";
 import Banner from "../components/Banner"; // navbar
 import Login from "./Login";
