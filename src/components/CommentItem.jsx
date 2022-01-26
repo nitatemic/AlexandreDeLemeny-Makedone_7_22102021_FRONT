@@ -6,8 +6,15 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-function didIHaveRightsToDelete(comment, user) {
-  return comment.author.id === user.id;
+function didIHaveRightsToDelete() {
+  // Ouvrir le cookie pour voir le UserID de l'utilisateur
+  // Si l'utilisateur est connecté et que l'utilisateur est l'auteur du commentaire
+  // OU si l'utilisateur est admin
+  let Cookie = document.cookie;
+  Cookie = Cookie.split("=")[1];
+  let UserRights = atob(Cookie.split(".")[1]);
+  console.log('Et la réponse est....' + (UserRights[0] === comment.author) || (UserRights[1] === true));
+  return (UserRights[0] === props.comment.author) || (UserRights[1] == 1);
 }
 
 export default function CommentItem(props) {
@@ -32,13 +39,15 @@ export default function CommentItem(props) {
         primary={`${props.comment.Prenom} ${props.comment.Nom}`}
         secondary={props.comment.CommentBody}
       />
-      <ListItemSecondaryAction>
-        <IconButton edge="end" aria-label="delete" onClick={handleDelete} disabled={isDeleting}>
-          <Tooltip title="Supprimer">
-            <DeleteIcon />
-          </Tooltip>
-        </IconButton>
-      </ListItemSecondaryAction>
+      {didIHaveRightsToDelete && (
+        <ListItemSecondaryAction>
+          <IconButton edge="end" aria-label="delete" onClick={handleDelete} disabled={isDeleting}>
+            <Tooltip title="Supprimer">
+              <DeleteIcon />
+            </Tooltip>
+          </IconButton>
+        </ListItemSecondaryAction>
+      )}
     </ListItem>
   );
 }
