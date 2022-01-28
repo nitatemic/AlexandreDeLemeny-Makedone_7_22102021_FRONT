@@ -34,7 +34,6 @@ export default function AddComment(props) {
     <FormControl
       variant="outlined"
       fullWidth
-      multiline
     >
       <InputLabel htmlFor="addCommentInput">Ajouter un commentaire</InputLabel>
       <OutlinedInput

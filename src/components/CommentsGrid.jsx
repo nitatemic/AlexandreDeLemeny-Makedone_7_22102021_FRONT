@@ -40,7 +40,7 @@ export default function CommentsGrid(props) {
   // List qui ajoutes des components CommentItem avec les commentaires
   return (
     <Box>
-      <List dense={dense}>
+      <List dense={false}>
         <AddComment post={props.post} />
         {comments.map((comment) => (
           <CommentItem
