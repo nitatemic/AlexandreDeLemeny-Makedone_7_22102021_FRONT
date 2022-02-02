@@ -13,7 +13,8 @@ function didIHaveRightsToDelete(props) {
   let Cookie = document.cookie.split("=")[1];
   const UserRights = JSON.parse(atob(Cookie.split(".")[1]));
   console.log(UserRights);
-  return ((UserRights.PersonID === props.comment.author) || (UserRights.IsAdmin === 1));
+  console.log(props.comment)
+  return ((UserRights.PersonID === props.comment.PersonID) || (UserRights.IsAdmin === 1));
 }
 
 export default function CommentItem(props) {
