@@ -8,6 +8,31 @@ export default function CommentsGrid(props) {
   const [dense, setDense] = React.useState(false);
   const [comments, setComments] = React.useState([]);
 
+  //Gérer la suppression d'un commenaire enfant
+  const handleDeleteComment = (CommentID) => {
+    console.log("ici");
+
+    //fetch à l'API pour supprimer le commentaire
+    fetch(`http://localhost:3001/api/comments/${CommentID}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${document.cookie.split("=")[1]}`,
+      },
+    })
+    .then((response) => {
+      if (response.status === 204) {
+        //Mettre à jour le state
+        setComments(comments.filter((comment) => comment.CommentID !== CommentID));
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+    
+  };
+  
+  
   useEffect(() => {
     const from = 0;
     const to = 5;
@@ -46,6 +71,7 @@ export default function CommentsGrid(props) {
           <CommentItem
             key={comment.CommentID}
             comment={comment}
+            handleDeleteComment={handleDeleteComment}
           />
         ))}
       </List>

@@ -25,7 +25,8 @@ export default function CommentItem(props) {
 
   const handleDelete = () => {
     setIsDeleting(true);
-    onDelete(comment.id);
+    //Dire au parent que le commentaire a été supprimé grace à handleDeleteComment={handleDeleteComment}
+    props.handleDeleteComment(props.comment.CommentID);
   };
 
   return (
