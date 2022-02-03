@@ -25,6 +25,9 @@ export default function CommentsGrid(props) {
         //Mettre à jour le state
         setComments(comments.filter((comment) => comment.CommentID !== CommentID));
       }
+      else {
+        console.log("Erreur lors de la suppression du commentaire");
+      }
     })
     .catch((error) => {
       console.log(error);
