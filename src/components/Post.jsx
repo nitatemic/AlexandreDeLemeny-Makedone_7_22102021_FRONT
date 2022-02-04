@@ -1,12 +1,14 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import {
-  Avatar, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, IconButton, Tooltip, Typography,
+  Avatar, Card, CardActions, CardHeader, CardMedia, CardContent, Collapse, IconButton, Tooltip, Typography, ListItem, ListItemAvatar, ListItemIcon, ListItemText, ListItemSecondaryAction
 } from "@mui/material/";
 import { red } from "@mui/material/colors";
 import CommentIcon from "@mui/icons-material/ExpandMore";
 import * as timeago from "timeago.js";
 import CommentsGrid from "./CommentsGrid.jsx";
+import { useEffect } from 'react';
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -19,6 +21,17 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
+function didIHaveRightsToDelete(props) {
+  // Ouvrir le cookie pour voir le UserID de l'utilisateur
+  // Si l'utilisateur est connecté et que l'utilisateur est l'auteur du post
+  // OU si l'utilisateur est admin
+  let Cookie = document.cookie.split("=")[1];
+  const UserRights = JSON.parse(atob(Cookie.split(".")[1]));
+  console.log(UserRights);
+  console.log(props.post)
+  return ((UserRights.PersonID === props.post.PersonID) || (UserRights.IsAdmin === 1));
+}
+  
 export default function Post(props) {
   const post = {
     Author: `${props.post.Prenom} ${props.post.Nom}`,
@@ -33,19 +46,52 @@ export default function Post(props) {
     setExpanded(!expanded);
   };
 
+  const [isDeleting, setIsDeleting] = React.useState(false);
+  useEffect(() => {
+    setIsDeleting(false);
+  }, [props]);
+
+  const handleDelete = () => {
+    setIsDeleting(true);
+    console.log(props.post.PostID);
+    props.handleDeletePost(props.post.PostID);
+  };
+  
   return (
     <Card
       className="MuiCard-root"
     >
-      <CardHeader
-        avatar={(
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {post.initials}
-          </Avatar>
-        )}
-        title={post.Title}
-        subheader={timeago.format(post.CreationDate, "fr")}
-      />
+      {didIHaveRightsToDelete(props) ? (
+        <CardHeader
+          avatar={(
+            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+              {post.initials}
+            </Avatar>
+          )}
+          action={
+            <IconButton edge="end" aria-label="delete" onClick={handleDelete} disabled={isDeleting} >
+              <Tooltip title="Supprimer">
+                <DeleteIcon />
+              </Tooltip>
+            </IconButton>
+          }
+
+          title={post.Title}
+          subheader={timeago.format(post.CreationDate, "fr")}
+        />
+      ) : (
+        <CardHeader
+          avatar={(
+            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+              {post.initials}
+            </Avatar>
+          )}
+          title={post.Title}
+          subheader={timeago.format(post.CreationDate, "fr")}
+        />
+      )}
+      
+
       <CardMedia
         component="img"
         height="100%"

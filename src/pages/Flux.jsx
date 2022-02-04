@@ -57,6 +57,8 @@ const style = {
   p: 4,
 };
 
+
+
 export default function Flux() {
   /* ------Modal------*/
   const [open, setOpen] = React.useState(false);
@@ -67,6 +69,36 @@ export default function Flux() {
 
   const [posts, setPosts] = useState([]);
 
+  //Gérer la suppression d'un commenaire enfant
+  const handleDeletePost = (PostToDelete) => {
+    console.log("ici");
+    console.log(PostToDelete);
+
+    //fetch à l'API pour supprimer le commentaire
+    fetch(`http://localhost:3001/api/posts/${PostToDelete}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${document.cookie.split("=")[1]}`,
+      },
+    })
+    .then((response) => {
+      if (response.status === 204) {
+        //Mettre à jour le state
+        setPosts(posts.filter((post) => post.PostID !== PostToDelete));
+      }
+      else {
+        console.log("Erreur lors de la suppression du post");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  };
+  
+  
+  
   const fileToUpload = null;
 
   // Recupérer les 5 derniers posts
@@ -147,7 +179,7 @@ export default function Flux() {
       <Container maxWidth="md">
         <Box id="postsContainer">
           {posts.map((post) => (
-            <Post key={post.PostID} post={post} />
+            <Post key={post.PostID} post={post} handleDeletePost={handleDeletePost} />
           ))}
         </Box>
       </Container>
@@ -172,7 +204,7 @@ export default function Flux() {
               Ajouter un post
             </Typography>
             <form onSubmit={handleSubmit}>
-              <TextField fullWidth label="Titre" minlength="1" spellcheck="true" id="title" />
+              <TextField fullWidth label="Titre" id="title" />
               <DragNDrop fileUpload={setFile} />
               <input id="submit" type="submit" hidden />
               <Button fullWidth id="btnSubmit" onClick={clickOnSubmit} variant="outlined">Poster !</Button>
