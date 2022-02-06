@@ -61,35 +61,25 @@ export default function Post(props) {
     <Card
       className="MuiCard-root"
     >
-      {didIHaveRightsToDelete(props) ? (
         <CardHeader
           avatar={(
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
               {post.initials}
             </Avatar>
           )}
+          
           action={
+          didIHaveRightsToDelete(props) ?
             <IconButton edge="end" aria-label="delete" onClick={handleDelete} disabled={isDeleting} >
               <Tooltip title="Supprimer">
                 <DeleteIcon />
               </Tooltip>
             </IconButton>
+            : null
           }
-
           title={post.Title}
           subheader={timeago.format(post.CreationDate, "fr")}
         />
-      ) : (
-        <CardHeader
-          avatar={(
-            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              {post.initials}
-            </Avatar>
-          )}
-          title={post.Title}
-          subheader={timeago.format(post.CreationDate, "fr")}
-        />
-      )}
       
 
       <CardMedia

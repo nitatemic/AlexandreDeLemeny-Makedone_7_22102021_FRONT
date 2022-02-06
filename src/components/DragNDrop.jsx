@@ -4,6 +4,9 @@ import "./css/dragNDrop.css";
 import { Button } from "@mui/material";
 
 export default function DragNDrop(props) {
+  
+  
+  //Lorsque le composant est monté, on lance la fonction
   useEffect(() => {
     const dropArea = document.querySelector(".drag-image");
     const dragText = dropArea.querySelector("h6");

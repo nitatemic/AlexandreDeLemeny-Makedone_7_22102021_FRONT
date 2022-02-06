@@ -63,7 +63,10 @@ export default function Flux() {
   /* ------Modal------*/
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+
+    setOpen(false)
+  };
   const [file, setFile] = useState(null);
   /* ------Fin Modal------*/
 
@@ -96,9 +99,7 @@ export default function Flux() {
     });
 
   };
-  
-  
-  
+
   const fileToUpload = null;
 
   // Recupérer les 5 derniers posts
@@ -154,8 +155,12 @@ export default function Flux() {
       body: formData,
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
+        if (res.status === 201) {
+          //Fermert le modal
+          handleClose();
+        
+          //Ajouter le nouveau post au state
+          setPosts([...posts, res.post]);
         }
         if (res.status === 401) {
           // Supprimer le cookie
@@ -207,7 +212,7 @@ export default function Flux() {
               <TextField fullWidth label="Titre" id="title" />
               <DragNDrop fileUpload={setFile} />
               <input id="submit" type="submit" hidden />
-              <Button fullWidth id="btnSubmit" onClick={clickOnSubmit} variant="outlined">Poster !</Button>
+              <Button fullWidth id="btnSubmit" onClick={clickOnSubmit} onClose={this.unMountComponent} variant="outlined">Poster !</Button>
             </form>
           </Box>
         </Fade>
