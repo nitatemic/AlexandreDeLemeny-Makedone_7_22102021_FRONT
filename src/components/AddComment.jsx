@@ -14,7 +14,7 @@ export default function AddComment(props) {
     // Recuperation du commentaire
     const comment = document.getElementById("addCommentInput").value;
     // Envoi du commentaire au serveur
-    fetch("http://localhost:3001/api/comments", {
+    fetch("http://localhost:3001/api/comments/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ export default function AddComment(props) {
     });
   };
 
-  const handleMouseDownPassword = (event) => {
+  const handleMouseDown = (event) => {
     event.preventDefault();
   };
 
@@ -45,7 +45,7 @@ export default function AddComment(props) {
             <IconButton
               aria-label="toggle password visibility"
               onClick={handleClickSendComment}
-              onMouseDown={handleMouseDownPassword}
+              onMouseDown={handleMouseDown}
               edge="end"
             >
               <Tooltip title="Envoyer">

@@ -1,8 +1,7 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
-  ListItem, ListItemAvatar, ListItemIcon, ListItemText, Avatar, IconButton, ListItemSecondaryAction, Tooltip,
+  ListItem, ListItemAvatar, ListItemText, Avatar, IconButton, ListItemSecondaryAction, Tooltip,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -10,10 +9,10 @@ function didIHaveRightsToDelete(props) {
   // Ouvrir le cookie pour voir le UserID de l'utilisateur
   // Si l'utilisateur est connecté et que l'utilisateur est l'auteur du commentaire
   // OU si l'utilisateur est admin
-  let Cookie = document.cookie.split("=")[1];
+  const Cookie = document.cookie.split("=")[1];
   const UserRights = JSON.parse(atob(Cookie.split(".")[1]));
   console.log(UserRights);
-  console.log(props.comment)
+  console.log(props.comment);
   return ((UserRights.PersonID === props.comment.PersonID) || (UserRights.IsAdmin === 1));
 }
 
@@ -25,7 +24,7 @@ export default function CommentItem(props) {
 
   const handleDelete = () => {
     setIsDeleting(true);
-    //Dire au parent que le commentaire a été supprimé grace à handleDeleteComment={handleDeleteComment}
+    // Dire au parent que le commentaire a été supprimé grâce à handleDeleteComment
     props.handleDeleteComment(props.comment.CommentID);
   };
 

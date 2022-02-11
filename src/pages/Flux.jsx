@@ -1,16 +1,14 @@
-// Page principal, qui affiche tous les posts
 import React from "react";
 import "./css/flux.css";
 import { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
 import {
   Button, Box, Backdrop, Container, Fab, TextField, Modal, Typography,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useSpring, animated } from "@react-spring/web";
 import PropTypes from "prop-types";
-import Post from "../components/Post.jsx";
-import DragNDrop from "../components/DragNDrop.jsx";
+import Post from "../components/Post";
+import DragNDrop from "../components/DragNDrop";
 
 const Fade = React.forwardRef((props, ref) => {
   const {
@@ -57,27 +55,24 @@ const style = {
   p: 4,
 };
 
-
-
 export default function Flux() {
   /* ------Modal------*/
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
-
-    setOpen(false)
+    setOpen(false);
   };
   const [file, setFile] = useState(null);
   /* ------Fin Modal------*/
 
   const [posts, setPosts] = useState([]);
 
-  //Gérer la suppression d'un commenaire enfant
+  // Gérer la suppression d'un commenaire enfant
   const handleDeletePost = (PostToDelete) => {
     console.log("ici");
     console.log(PostToDelete);
 
-    //fetch à l'API pour supprimer le commentaire
+    // fetch à l'API pour supprimer le commentaire
     fetch(`http://localhost:3001/api/posts/${PostToDelete}`, {
       method: "DELETE",
       headers: {
@@ -85,19 +80,17 @@ export default function Flux() {
         Authorization: `Bearer ${document.cookie.split("=")[1]}`,
       },
     })
-    .then((response) => {
-      if (response.status === 204) {
-        //Mettre à jour le state
-        setPosts(posts.filter((post) => post.PostID !== PostToDelete));
-      }
-      else {
-        console.log("Erreur lors de la suppression du post");
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
+      .then((response) => {
+        if (response.status === 204) {
+        // Mettre à jour le state
+          setPosts(posts.filter((post) => post.PostID !== PostToDelete));
+        } else {
+          console.log("Erreur lors de la suppression du post");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const fileToUpload = null;
@@ -156,10 +149,10 @@ export default function Flux() {
     })
       .then((res) => {
         if (res.status === 201) {
-          //Fermert le modal
+          // Fermert le modal
           handleClose();
-        
-          //Ajouter le nouveau post au state
+
+          // Ajouter le nouveau post au state
           setPosts([...posts, res.post]);
         }
         if (res.status === 401) {
@@ -212,7 +205,7 @@ export default function Flux() {
               <TextField fullWidth label="Titre" id="title" />
               <DragNDrop fileUpload={setFile} />
               <input id="submit" type="submit" hidden />
-              <Button fullWidth id="btnSubmit" onClick={clickOnSubmit} onClose={this.unMountComponent} variant="outlined">Poster !</Button>
+              <Button fullWidth id="btnSubmit" onClick={clickOnSubmit} variant="outlined">Poster !</Button>
             </form>
           </Box>
         </Fade>
