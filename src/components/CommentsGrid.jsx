@@ -66,7 +66,7 @@ export default function CommentsGrid(props) {
   return (
     <Box>
       <List dense={false}>
-        <AddComment post={props.post} />
+        <AddComment post={props.post} setComments={setComments} />
         {comments.map((comment) => (
           <CommentItem
             key={comment.CommentID}

@@ -23,6 +23,11 @@ export default function AddComment(props) {
       body: JSON.stringify({
         CommentBody: comment, PostID: props.post.PostID,
       }),
+    }).then((response) => response.json()).then (res => {
+      props.setComments((oldComments) => {
+        const newComments = [res.comment, ...oldComments];
+        return newComments;
+      });
     });
   };
 
