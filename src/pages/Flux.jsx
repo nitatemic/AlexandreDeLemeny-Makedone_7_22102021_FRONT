@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./css/flux.css";
-import { useState, useEffect } from "react";
 import {
   Button, Box, Backdrop, Container, Fab, TextField, Modal, Typography,
 } from "@mui/material";
@@ -60,8 +59,11 @@ export default function Flux() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
+
+
     setOpen(false);
   };
+
   const [file, setFile] = useState(null);
   /* ------Fin Modal------*/
 
@@ -69,9 +71,6 @@ export default function Flux() {
 
   // Gérer la suppression d'un commenaire enfant
   const handleDeletePost = (PostToDelete) => {
-    console.log("ici");
-    console.log(PostToDelete);
-
     // fetch à l'API pour supprimer le commentaire
     fetch(`http://localhost:3001/api/posts/${PostToDelete}`, {
       method: "DELETE",
@@ -95,7 +94,7 @@ export default function Flux() {
 
   const fileToUpload = null;
 
-  // Recupérer les 5 derniers posts
+  // Récupérer les 5 derniers posts
   const from = 0;
   const to = 5;
 
@@ -129,8 +128,14 @@ export default function Flux() {
         );
       });
   }, []);
+
   function handleSubmit(event) {
     event.preventDefault();
+    if (document.getElementById("title").value.length === 0) {
+      return "Le post doit avoir un titre";
+    } if (file === undefined) {
+      return "Oups, on dirait que vous avez oublié de choisir une image...";
+    }
 
     // Creer l'objet FormData
     const formData = new FormData();
@@ -147,15 +152,18 @@ export default function Flux() {
       },
       body: formData,
     })
-      .then((res) => {
-        if (res.status === 201) {
-          // Fermert le modal
-          handleClose();
-
-          // Ajouter le nouveau post au state
-          setPosts([...posts, res.post]);
+      .then((response) => {
+        if (response.status === 201) {
+          response.json().then((res) => {
+            setPosts((oldPosts) => {
+              const newPosts = [res.post, ...oldPosts];
+              return newPosts;
+            });
+          });
+          setOpen(false);
         }
-        if (res.status === 401) {
+
+        if (response.status === 401) {
           // Supprimer le cookie
           document.cookie = "Bearer=; max-age=0; path=/;";
           // Rediriger vers la page de connexion

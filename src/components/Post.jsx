@@ -91,7 +91,7 @@ export default function Post(props) {
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          {post.Title}
+          {`Par ${post.Author}`}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

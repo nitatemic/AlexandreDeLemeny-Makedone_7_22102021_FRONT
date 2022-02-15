@@ -4,9 +4,7 @@ import "./css/dragNDrop.css";
 import { Button } from "@mui/material";
 
 export default function DragNDrop(props) {
-  
-  
-  //Lorsque le composant est monté, on lance la fonction
+  // Lorsque le composant est monté, on lance la fonction
   useEffect(() => {
     const dropArea = document.querySelector(".drag-image");
     const dragText = dropArea.querySelector("h6");
@@ -14,38 +12,51 @@ export default function DragNDrop(props) {
     const input = dropArea.querySelector("input");
     let file;
 
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
+    function clickOnButton(e) {
+      e.preventDefault();
       input.click();
-    });
+    }
+    button.addEventListener("click", clickOnButton);
 
-    input.addEventListener("change", () => {
+    function inputClick() {
       dropArea.classList.add("active");
       file = input.files[0];
       props.fileUpload(file);
-      console.log(file);
       viewfile(file);
-    });
+    }
+    input.addEventListener("change", inputClick);
 
-    dropArea.addEventListener("dragover", (event) => {
-      event.preventDefault();
+    function dragOver(e) {
+      e.preventDefault();
       dropArea.classList.add("active");
       dragText.textContent = "Relâchez pour envoyer le fichier";
-    });
+    }
+    dropArea.addEventListener("dragover", dragOver);
 
-    dropArea.addEventListener("dragleave", () => {
+    function dragLeave(e) {
       dropArea.classList.remove("active");
       dragText.textContent = "Glisser & Déposer pour envoyer un fichier";
-    });
+    }
+    dropArea.addEventListener("dragleave", dragLeave);
 
-    dropArea.addEventListener("drop", (event) => {
-      event.preventDefault();
-      file = event.dataTransfer.files[0];
+    function drop(e) {
+      e.preventDefault();
+      file = e.dataTransfer.files[0];
       props.fileUpload(file);
       console.log(file);
       viewfile(file);
-    });
+    }
+    dropArea.addEventListener("drop", drop);
+    return () => {
+      console.log("component");
+      document.removeEventListener("dragover", dragOver);
+      document.removeEventListener("drop", drop);
+      document.removeEventListener("click", clickOnButton);
+      document.removeEventListener("change", inputClick);
+      document.removeEventListener("dragLeave", dragLeave);
+    };
   });
+
   return (
     <div className="drag-image">
       <div className="icon"><i className="fas fa-cloud-upload-alt" /></div>
@@ -61,8 +72,6 @@ export default function DragNDrop(props) {
 function viewfile(file) {
   const dropArea = document.querySelector(".drag-image");
   const dragText = dropArea.querySelector("h6");
-  const button = dropArea.querySelector("button");
-  const input = dropArea.querySelector("input");
   const fileType = file.type;
   const validExtensions = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
   if (validExtensions.includes(fileType)) {
