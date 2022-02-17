@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./css/Login.css";
 import {
   Button, Box, Snackbar, Stack, TextField, ThemeProvider, Tooltip, Typography, tooltipClasses,
@@ -19,21 +19,44 @@ const HtmlTooltip = styled(({ className, ...props }) => (
 }));
 
 export default function Account() {
+  let user;
+  useEffect(() => {
+    /* Faire un fetch à l'API pour récupérer les informations du compte utilisateur */
+    fetch("http://localhost:3001/api/account/", {
+      headers: {
+        Authorization: `Bearer ${document.cookie.split("=")[1]}`,
+      },
+    }).then((response) => {
+      response.json()
+        .then((data) => {
+          user = data.user[0];
+          prenomInputFormContainer.value = user.Prenom;
+          nomInputFormContainer.value = user.Nom;
+          mailInputFormContainer.value = user.Mail;
+        });
+    });
+  });
   return (
     <Box>
       <section className="vh-100">
         <div className="container-fluid h-custom">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-md-9 col-lg-6 col-xl-5">
-              /* TODO : FAire un message en gros */
+              /* TODO : Faire un message en gros */
               <p>
                 Bonjour Alexandre
               </p>
             </div>
             <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
               <form>
-                <div className="form-outline mb-4">
-                  <TextField sx={{ width: "100%" }} label="Adresse mail" variant="outlined" type="email" id="mail" defaultValue="Hello World" disabled />
+                <div className="form-outline mb-4" id="PrenomFormContainer">
+                  <TextField sx={{ width: "100%" }} label="Prenom" variant="outlined" type="text" id="prenomInputFormContainer" defaultValue="Chargement en cours..." disabled />
+                </div>
+                <div className="form-outline mb-4" id="NomFormContainer">
+                  <TextField sx={{ width: "100%" }} label="Nom" variant="outlined" type="text" id="nomInputFormContainer" defaultValue="Chargement en cours..." disabled />
+                </div>
+                <div className="form-outline mb-4" id="MailFormContainer">
+                  <TextField sx={{ width: "100%" }} label="Adresse mail" variant="outlined" type="email" id="mailInputFormContainer" defaultValue="Chargement en cours..." disabled />
                 </div>
 
                 <div className="form-outline mb-4">
