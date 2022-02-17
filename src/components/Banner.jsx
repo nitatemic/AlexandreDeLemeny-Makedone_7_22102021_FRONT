@@ -8,8 +8,7 @@ import { Link } from "react-router-dom";
 import "./css/banner.css";
 
 export default function Banner() {
-  let auth;
-  auth = document.cookie.indexOf("Bearer") !== -1;
+  const auth = document.cookie.indexOf("Bearer") !== -1;
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -126,15 +125,11 @@ export default function Banner() {
                     onClose={handleCloseUserMenu}
                   >
                     <MenuItem>
-                      <Link to="./login" className="linkToButton">Mon profil</Link>
-                      {" "}
-                      {/* TODO : Faire la page du profil */}
+                      <Link to="./account" className="linkToButton">Mon profil</Link>
                     </MenuItem>
 
                     <MenuItem>
                       <a onClick={eraseCookie} className="linkToButton">Se déconnecter</a>
-                      {" "}
-                      {/* TODO : Faire la fonction de déconnexion */}
                     </MenuItem>
                   </Menu>
                 </Box>

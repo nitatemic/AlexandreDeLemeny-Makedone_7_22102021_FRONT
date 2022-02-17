@@ -6,6 +6,7 @@ import Banner from "../components/Banner"; // navbar
 import Login from "./Login";
 import Signup from "./Signup";
 import Flux from "./Flux";
+import Account from "./Account";
 
 import darkTheme from "./global";
 
@@ -16,6 +17,7 @@ export default function App() {
         <div className="app">
           <Banner />
           <Routes>
+            <Route path="/account" exact element={<Account />} />
             <Route path="/login" exact element={<Login />} />
             <Route path="/signup" exact element={<Signup />} />
             <Route path="/" exact element={<Flux />} />
