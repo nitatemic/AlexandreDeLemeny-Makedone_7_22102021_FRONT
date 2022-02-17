@@ -1,7 +1,14 @@
 import React, { useEffect } from "react";
 import "./css/Login.css";
 import {
-  Button, Box, Snackbar, Stack, TextField, ThemeProvider, Tooltip, Typography, tooltipClasses,
+  Button,
+  Box,
+  Snackbar,
+  TextField,
+  Tooltip,
+  Typography,
+  tooltipClasses,
+  Alert,
 } from "@mui/material";
 
 import "./css/global.css";
@@ -19,7 +26,90 @@ const HtmlTooltip = styled(({ className, ...props }) => (
 }));
 
 export default function Account() {
+  const [message, setMessage] = React.useState("");
+  const [typeMessage, setTypeMessage] = React.useState("error");
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function updatePassword() {
+    /* Récupérer les données du formulaire */
+    const oldPassword = document.getElementById("oldPassword").value;
+    const newPassword = document.getElementById("newPassword").value;
+
+    const confirmPassword = document.getElementById("confNewPassword").value;
+    console.log(oldPassword, newPassword, confirmPassword);
+
+    /* Vérifier que les mots de passe sont identiques */
+    if (newPassword !== confirmPassword) {
+      setTypeMessage("error");
+      setMessage("Les mots de passe ne sont pas identiques");
+      setOpen();
+      console.log("Les mots de passe ne sont pas identiques");
+      handleClick();
+      return;
+    }
+    if (oldPassword === newPassword) {
+      setTypeMessage("error");
+      setMessage("Le nouveau mot de passe doit être différent de l'ancien");
+      setOpen();
+      console.log("Le nouveau mot de passe doit être différent de l'ancien");
+      handleClick();
+      return;
+    }
+    if (newPassword.length < 12) {
+      setTypeMessage("error");
+      setMessage("Le nouveau mot de passe doit contenir au moins 12 caractères");
+      setOpen();
+      console.log("Le nouveau mot de passe doit contenir au moins 12 caractères");
+      handleClick();
+      return;
+    }
+    fetch("http://localhost:3001/api/account/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${document.cookie.split("=")[1]}`,
+      },
+      body: JSON.stringify({
+        oldPassword,
+        newPassword,
+        confirmPassword,
+      }),
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          setTypeMessage("success");
+          setMessage("Mot de passe modifié avec succès");
+          setOpen();
+          document.getElementById("oldPassword").value = "";
+          document.getElementById("newPassword").value = "";
+          document.getElementById("confNewPassword").value = "";
+          console.log("Mot de passe modifié avec succès");
+          handleClick();
+        } else {
+          setTypeMessage("error");
+          setMessage("Mot de passe incorrect");
+          setOpen();
+          console.log("Mot de passe incorrect");
+          handleClick();
+        }
+      });
+  }
+
   let user;
+
   useEffect(() => {
     /* Faire un fetch à l'API pour récupérer les informations du compte utilisateur */
     fetch("http://localhost:3001/api/account/", {
@@ -66,11 +156,11 @@ export default function Account() {
                   <TextField sx={{ width: "100%" }} label="Nouveau mot de passe" variant="outlined" type="password" id="newPassword" />
                 </div>
                 <div className="form-outline mb-4">
-                  <TextField sx={{ width: "100%" }} label="Confirmation du nouveau mot de passe" variant="outlined" type="password" id="confNewPassword" />
+                  <TextField sx={{ width: "100%" }} label="Confirmation du nouveau mot de passe" variant="outlined" autoComplete="new-password" type="password" id="confNewPassword" />
                 </div>
 
                 <div className="text-center text-lg-start mt-4 pt-2">
-                  <Button variant="contained" id="UpdatePassword">
+                  <Button variant="contained" id="UpdatePassword" onClick={updatePassword}>
                     Modifier le mot de passe
                   </Button>
                 </div>
@@ -90,12 +180,16 @@ export default function Account() {
                     Supprimer mon compte
                   </Button>
                 </HtmlTooltip>
-
               </div>
             </div>
           </div>
         </div>
       </section>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity={typeMessage} sx={{ width: "100%" }}>
+          {message}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }
