@@ -28,6 +28,7 @@ const HtmlTooltip = styled(({ className, ...props }) => (
 export default function Account() {
   const [message, setMessage] = React.useState("");
   const [typeMessage, setTypeMessage] = React.useState("error");
+  const [name, setName] = React.useState("");
 
   const [open, setOpen] = React.useState(false);
 
@@ -42,6 +43,15 @@ export default function Account() {
 
     setOpen(false);
   };
+
+  function bonjourBonsoir() {
+     const date = new Date();
+    if (date.getHours() < 18 && date.getHours() > 5) {
+      return "Bonjour";
+    }
+    return "Bonsoir";
+
+  }
 
   function updatePassword() {
     /* Récupérer les données du formulaire */
@@ -123,6 +133,7 @@ export default function Account() {
           prenomInputFormContainer.value = user.Prenom;
           nomInputFormContainer.value = user.Nom;
           mailInputFormContainer.value = user.Mail;
+          setName(user.Prenom);
         });
     });
   });
@@ -132,10 +143,9 @@ export default function Account() {
         <div className="container-fluid h-custom">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-md-9 col-lg-6 col-xl-5">
-              /* TODO : Faire un message en gros */
-              <p>
-                Bonjour Alexandre
-              </p>
+              <Typography variant="h1" color="white" id="welcomeMessage">
+                {bonjourBonsoir()} {name}
+              </Typography>
             </div>
             <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
               <form>
