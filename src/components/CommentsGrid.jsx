@@ -34,9 +34,7 @@ export default function CommentsGrid(props) {
   };
 
   useEffect(() => {
-    const from = 0;
-    const to = 5;
-    fetch(`http://localhost:3001/api/comments/${props.post.PostID}/${from}/${to}`, {
+    fetch(`http://localhost:3001/api/comments/${props.post.PostID}/`, {
       headers: {
         Authorization: `Bearer ${document.cookie.split("=")[1]}`,
       },

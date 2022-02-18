@@ -97,7 +97,7 @@ export default function Flux() {
   const to = 5;
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/posts/0/5", {
+    fetch("http://localhost:3001/api/posts/", {
       headers: {
         Authorization: `Bearer ${document.cookie.split("=")[1]}`,
       },
