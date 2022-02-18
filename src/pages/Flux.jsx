@@ -59,8 +59,6 @@ export default function Flux() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
-
-
     setOpen(false);
   };
 
@@ -181,43 +179,47 @@ export default function Flux() {
   }
 
   return (
-    <Box>
-      <Container maxWidth="md">
-        <Box id="postsContainer">
-          {posts.map((post) => (
-            <Post key={post.PostID} post={post} handleDeletePost={handleDeletePost} />
-          ))}
-        </Box>
-      </Container>
-      <Fab variant="extended" onClick={handleOpen}>
-        <AddIcon sx={{ mr: 1 }} />
-        Publier un nouveau post
-      </Fab>
-      <Modal
-        aria-labelledby="spring-modal-title"
-        aria-describedby="spring-modal-description"
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <Box sx={style}>
-            <Typography id="spring-modal-title white" variant="h6" component="h2">
-              Ajouter un post
-            </Typography>
-            <form onSubmit={handleSubmit}>
-              <TextField fullWidth label="Titre" id="title" />
-              <DragNDrop fileUpload={setFile} />
-              <input id="submit" type="submit" hidden />
-              <Button fullWidth id="btnSubmit" onClick={clickOnSubmit} variant="outlined">Poster !</Button>
-            </form>
+    <>
+
+      <Box>
+        <Container maxWidth="md">
+          <Box id="postsContainer">
+            {posts.map((post) => (
+              <Post key={post.PostID} post={post} handleDeletePost={handleDeletePost} />
+            ))}
           </Box>
-        </Fade>
-      </Modal>
-    </Box>
+        </Container>
+        <Fab variant="extended" onClick={handleOpen}>
+          <AddIcon sx={{ mr: 1 }} />
+          Publier un nouveau post
+        </Fab>
+        <Modal
+          aria-labelledby="spring-modal-title"
+          aria-describedby="spring-modal-description"
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={open}>
+            <Box sx={style}>
+              <Typography id="spring-modal-title white" variant="h6" component="h2">
+                Ajouter un post
+              </Typography>
+              <form onSubmit={handleSubmit}>
+                <TextField fullWidth label="Titre" id="title" />
+                <DragNDrop fileUpload={setFile} />
+                <input id="submit" type="submit" hidden />
+                <Button fullWidth id="btnSubmit" onClick={clickOnSubmit} variant="outlined">Poster !</Button>
+              </form>
+            </Box>
+          </Fade>
+        </Modal>
+      </Box>
+      <footer className="fixed_footer" />
+    </>
   );
 }
