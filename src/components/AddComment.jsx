@@ -24,8 +24,9 @@ export default function AddComment(props) {
         CommentBody: comment, PostID: props.post.PostID,
       }),
     }).then((response) => {
-      if (response.status === 200) {
+      if (response.status === 201) {
         response.json().then (res => {
+          document.getElementById("addCommentInput").value = "";
           props.setComments((oldComments) => {
             const newComments = [res.comment, ...oldComments];
             return newComments;
