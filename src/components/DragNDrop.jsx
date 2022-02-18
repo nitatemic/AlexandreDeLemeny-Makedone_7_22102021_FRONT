@@ -47,14 +47,7 @@ export default function DragNDrop(props) {
       viewfile(file);
     }
     dropArea.addEventListener("drop", drop);
-    return () => {
-      document.removeEventListener("dragover", dragOver);
-      document.removeEventListener("drop", drop);
-      document.removeEventListener("click", clickOnButton);
-      document.removeEventListener("change", inputClick);
-      document.removeEventListener("dragLeave", dragLeave);
-    };
-  });
+  }, []);
 
   return (
     <div className="drag-image">

@@ -67,10 +67,6 @@ export default function Flux() {
 
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    //setOpen(false);
-  }, [setPosts]);
-
   // Gérer la suppression d'un commenaire enfant
   const handleDeletePost = (PostToDelete) => {
     // fetch à l'API pour supprimer le commentaire
@@ -157,14 +153,13 @@ export default function Flux() {
       .then((response) => {
         if (response.status === 201) {
           response.json().then((res) => {
+            handleClose();
             setPosts((oldPosts) => {
               const newPosts = [res.post, ...oldPosts];
               return newPosts;
             });
           });
-        }
-
-        if (response.status === 401) {
+        } else if (response.status === 401) {
           // Supprimer le cookie
           document.cookie = "Bearer=; max-age=0; path=/;";
           // Rediriger vers la page de connexion
