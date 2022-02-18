@@ -48,7 +48,6 @@ export default function DragNDrop(props) {
     }
     dropArea.addEventListener("drop", drop);
     return () => {
-      console.log("component");
       document.removeEventListener("dragover", dragOver);
       document.removeEventListener("drop", drop);
       document.removeEventListener("click", clickOnButton);

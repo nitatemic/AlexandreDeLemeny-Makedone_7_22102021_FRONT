@@ -213,7 +213,7 @@ export default function Account() {
                     </>
                   )}
                 >
-                  <Button variant="contained" id="UpdatePassword" onClick={deleteAccount()} color="error">
+                  <Button variant="contained" id="UpdatePassword" onClick={deleteAccount} color="error">
                     Supprimer mon compte
                   </Button>
                 </HtmlTooltip>

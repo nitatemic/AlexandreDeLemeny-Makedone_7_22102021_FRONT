@@ -67,6 +67,10 @@ export default function Flux() {
 
   const [posts, setPosts] = useState([]);
 
+  useEffect(() => {
+    //setOpen(false);
+  }, [setPosts]);
+
   // Gérer la suppression d'un commenaire enfant
   const handleDeletePost = (PostToDelete) => {
     // fetch à l'API pour supprimer le commentaire
@@ -158,7 +162,6 @@ export default function Flux() {
               return newPosts;
             });
           });
-          setOpen(false);
         }
 
         if (response.status === 401) {
