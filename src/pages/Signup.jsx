@@ -1,11 +1,61 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Button, TextField, Typography } from "@mui/material";
+import {
+  Alert, Button, Snackbar, TextField, Typography,
+} from "@mui/material";
 import "./css/Login.css";
 import { ThemeProvider } from "@emotion/react";
 import darkTheme from "./global";
 
-function Signup() {
+export default function Signup() {
+  const [message, setMessage] = React.useState("");
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function signUp(e) {
+    e.preventDefault();
+    // on récupère les données du formulaire
+    const lastName = document.getElementById("lastName").value;
+    const firstName = document.getElementById("firstName").value;
+    const mail = document.getElementById("mail").value;
+    const password = document.getElementById("password").value;
+
+    // on crée un objet user
+    const user = {
+      lastName,
+      firstName,
+      mail,
+      password,
+
+    };
+    // on envoie les données au serveur
+    console.log("Envoi des données au serveur");
+    fetch("http://localhost:3001/api/auth/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((response) => {
+        if (response.status === 201) {
+          Window.location.href = "/login";
+        } else {
+          response.json().then((data) => {
+            setMessage(data.error);
+            setOpen(true);
+          });
+        }
+      });
+  }
+
   return (
 
     <section className="vh-100">
@@ -46,42 +96,11 @@ function Signup() {
           </div>
         </div>
       </div>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+          {message}
+        </Alert>
+      </Snackbar>
     </section>
   );
 }
-
-// fonction qui permet de créer un compte
-
-function signUp(e) {
-  e.preventDefault();
-  // on récupère les données du formulaire
-  const lastName = document.getElementById("lastName").value;
-  const firstName = document.getElementById("firstName").value;
-  const mail = document.getElementById("mail").value;
-  const password = document.getElementById("password").value;
-
-  // on crée un objet user
-  const user = {
-    lastName,
-    firstName,
-    mail,
-    password,
-
-  };
-    // on envoie les données au serveur
-  console.log("Envoi des données au serveur");
-  fetch("http://localhost:3001/api/auth/signup", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(user),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      document.location.href = "/login";
-    })
-    .catch((error) => console.error(error));
-}
-export default Signup;
