@@ -45,14 +45,41 @@ export default function Account() {
   };
 
   function bonjourBonsoir() {
-     const date = new Date();
+    const date = new Date();
     if (date.getHours() < 18 && date.getHours() > 5) {
       return "Bonjour";
     }
     return "Bonsoir";
-
   }
 
+  function deleteAccount() {
+    fetch("http://localhost:3001/api/account/", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${document.cookie.split("=")[1]}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message === "success") {
+          setMessage("Votre compte a bien été supprimé");
+          setTypeMessage("success");
+          setOpen();
+          document.cookie = "Bearer=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          window.location.href = "/login";
+        } else {
+          setTypeMessage("error");
+          setMessage("Une erreur est survenue");
+          setOpen();
+        }
+      })
+      .catch((error) => {
+        setTypeMessage("error");
+        setMessage("Une erreur est survenue");
+        setOpen();
+      });
+  }
   function updatePassword() {
     /* Récupérer les données du formulaire */
     const oldPassword = document.getElementById("oldPassword").value;
@@ -87,7 +114,7 @@ export default function Account() {
       return;
     }
     fetch("http://localhost:3001/api/account/", {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${document.cookie.split("=")[1]}`,
@@ -186,7 +213,7 @@ export default function Account() {
                     </>
                   )}
                 >
-                  <Button variant="contained" id="UpdatePassword" color="error">
+                  <Button variant="contained" id="UpdatePassword" onClick={deleteAccount()} color="error">
                     Supprimer mon compte
                   </Button>
                 </HtmlTooltip>
