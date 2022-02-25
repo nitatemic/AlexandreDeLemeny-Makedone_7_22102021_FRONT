@@ -1,12 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import {
-  Alert, Button, Snackbar, TextField, Typography,
+  Alert, Button, Snackbar, TextField
 } from "@mui/material";
 import "./css/Login.css";
-import { ThemeProvider } from "@emotion/react";
-import darkTheme from "./global";
 
+import logo from "../../assets/images/logo/svg/icon-left-font-monochrome-white.svg";
 export default function Signup() {
   const [message, setMessage] = React.useState("");
   const [open, setOpen] = React.useState(false);
@@ -63,7 +61,7 @@ export default function Signup() {
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-md-9 col-lg-6 col-xl-5">
             <img
-              src="../../assets/images/logo/svg/icon-left-font-monochrome-white.svg"
+              src={logo}
               className="img-fluid"
               alt="Logo Groupomania"
             />

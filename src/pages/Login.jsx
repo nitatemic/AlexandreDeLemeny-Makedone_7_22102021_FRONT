@@ -4,6 +4,7 @@ import {
   Button, Box, Snackbar, Stack, TextField, ThemeProvider, Alert,
 } from "@mui/material";
 import "./css/global.css";
+import logo from "../../assets/images/logo/svg/icon-left-font-monochrome-white.svg";
 
 function Login() {
   const [message, setMessage] = React.useState("");
@@ -63,7 +64,7 @@ function Login() {
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-md-9 col-lg-6 col-xl-5">
               <img
-                src="../../assets/images/logo/svg/icon-left-font-monochrome-white.svg"
+                src={logo}
                 className="img-fluid"
                 alt="Logo Groupomania"
               />
