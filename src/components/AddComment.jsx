@@ -28,7 +28,7 @@ export default function AddComment(props) {
         response.json().then (res => {
           document.getElementById("addCommentInput").value = "";
           props.setComments((oldComments) => {
-            const newComments = [res.comment, ...oldComments];
+            const newComments = [...oldComments, res.comment];
             return newComments;
           });
         });
