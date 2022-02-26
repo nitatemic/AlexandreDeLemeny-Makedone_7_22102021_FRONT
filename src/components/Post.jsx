@@ -27,8 +27,8 @@ function didIHaveRightsToDelete(props) {
   // OU si l'utilisateur est admin
   const Cookie = document.cookie.split("=")[1];
   const UserRights = JSON.parse(atob(Cookie.split(".")[1]));
-  console.log(UserRights);
-  console.log(props.post);
+  
+  
   return ((UserRights.PersonID === props.post.PersonID) || (UserRights.IsAdmin === 1));
 }
 
@@ -53,7 +53,7 @@ export default function Post(props) {
 
   const handleDelete = () => {
     setIsDeleting(true);
-    console.log(props.post.PostID);
+    
     props.handleDeletePost(props.post.PostID);
   };
 

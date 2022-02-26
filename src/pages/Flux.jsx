@@ -82,11 +82,11 @@ export default function Flux() {
         // Mettre à jour le state
           setPosts(posts.filter((post) => post.PostID !== PostToDelete));
         } else {
-          console.log("Erreur lors de la suppression du post");
+          
         }
       })
       .catch((error) => {
-        console.log(error);
+        
       });
   };
 
@@ -116,14 +116,12 @@ export default function Flux() {
         }
       })
       .then((data) => {
-        console.log(data.posts);
+        
         setPosts(data.posts);
         document.cookie = `Bearer=${data.token}; max-age=${720 * 60}; path=/;`;
       })
       .catch(() => {
-        console.error(
-          "Oops, an error occurred. Please contact alexandre@nitatemic.dev",
-        );
+        
       });
   }, []);
 
@@ -140,8 +138,8 @@ export default function Flux() {
     formData.append("title", document.getElementById("title").value);
     formData.append("image", file, file.name);
 
-    console.log(formData.get("image"));
-    console.log(formData.get("title"));
+    
+    
 
     fetch("http://localhost:3001/api/posts", {
       method: "POST",
@@ -172,7 +170,7 @@ export default function Flux() {
 
   function clickOnSubmit(e) {
     e.preventDefault();
-    console.log("You clicked submit.");
+    
     document.getElementById("submit").click();
   }
 

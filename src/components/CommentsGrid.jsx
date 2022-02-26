@@ -10,7 +10,7 @@ export default function CommentsGrid(props) {
 
   // Gérer la suppression d'un commenaire enfant
   const handleDeleteComment = (CommentID) => {
-    console.log("ici");
+    
 
     // fetch à l'API pour supprimer le commentaire
     fetch(`http://localhost:3001/api/comments/${CommentID}`, {
@@ -25,11 +25,11 @@ export default function CommentsGrid(props) {
         // Mettre à jour le state
           setComments(comments.filter((comment) => comment.CommentID !== CommentID));
         } else {
-          console.log("Erreur lors de la suppression du commentaire");
+          
         }
       })
       .catch((error) => {
-        console.log(error);
+        
       });
   };
 
@@ -50,14 +50,12 @@ export default function CommentsGrid(props) {
         window.location.href = "/login";
       })
       .then((data) => {
-        console.log(data.comments);
-        console.log(`%c ↗️ Comments from the post number ${props.post.PostID} fetched successfully !`, "color: #0df904");
+        
+        
         setComments(data.comments);
       })
       .catch(() => {
-        console.error(
-          "Oops, an error occurred. Please contact alexandre@nitatemic.dev",
-        );
+        
       });
   }, []);
   // List qui ajoutes des components CommentItem avec les commentaires
