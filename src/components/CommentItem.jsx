@@ -11,8 +11,8 @@ function didIHaveRightsToDelete(props) {
   // OU si l'utilisateur est admin
   const Cookie = document.cookie.split("=")[1];
   const UserRights = JSON.parse(atob(Cookie.split(".")[1]));
-  console.log(UserRights);
-  console.log(props.comment);
+  
+  
   return ((UserRights.PersonID === props.comment.PersonID) || (UserRights.IsAdmin === 1));
 }
 

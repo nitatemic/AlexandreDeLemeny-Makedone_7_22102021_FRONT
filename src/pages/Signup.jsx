@@ -34,7 +34,7 @@ export default function Signup() {
 
     };
     // on envoie les données au serveur
-    console.log("Envoi des données au serveur");
+    
     fetch("http://localhost:3001/api/auth/signup", {
       method: "POST",
       headers: {

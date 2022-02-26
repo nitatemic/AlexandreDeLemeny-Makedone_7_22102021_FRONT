@@ -43,7 +43,7 @@ export default function DragNDrop(props) {
       e.preventDefault();
       file = e.dataTransfer.files[0];
       props.fileUpload(file);
-      console.log(file);
+      
       viewfile(file);
     }
     dropArea.addEventListener("drop", drop);

@@ -86,14 +86,14 @@ export default function Account() {
     const newPassword = document.getElementById("newPassword").value;
 
     const confirmPassword = document.getElementById("confNewPassword").value;
-    console.log(oldPassword, newPassword, confirmPassword);
+    
 
     /* Vérifier que les mots de passe sont identiques */
     if (newPassword !== confirmPassword) {
       setTypeMessage("error");
       setMessage("Les mots de passe ne sont pas identiques");
       setOpen();
-      console.log("Les mots de passe ne sont pas identiques");
+      
       handleClick();
       return;
     }
@@ -101,7 +101,7 @@ export default function Account() {
       setTypeMessage("error");
       setMessage("Le nouveau mot de passe doit être différent de l'ancien");
       setOpen();
-      console.log("Le nouveau mot de passe doit être différent de l'ancien");
+      
       handleClick();
       return;
     }
@@ -109,7 +109,7 @@ export default function Account() {
       setTypeMessage("error");
       setMessage("Le nouveau mot de passe doit contenir au moins 12 caractères");
       setOpen();
-      console.log("Le nouveau mot de passe doit contenir au moins 12 caractères");
+      
       handleClick();
       return;
     }
@@ -133,13 +133,13 @@ export default function Account() {
           document.getElementById("oldPassword").value = "";
           document.getElementById("newPassword").value = "";
           document.getElementById("confNewPassword").value = "";
-          console.log("Mot de passe modifié avec succès");
+          
           handleClick();
         } else {
           setTypeMessage("error");
           setMessage("Mot de passe incorrect");
           setOpen();
-          console.log("Mot de passe incorrect");
+          
           handleClick();
         }
       });

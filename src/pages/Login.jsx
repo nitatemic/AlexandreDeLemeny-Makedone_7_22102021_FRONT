@@ -30,7 +30,7 @@ function Login() {
       password,
     };
     // on envoie les données au serveur
-    console.log("Envoi des données au serveur");
+    
     fetch("http://localhost:3001/api/auth/login", {
       method: "POST",
       headers: {
@@ -42,7 +42,7 @@ function Login() {
       .then((data) => {
       // Si la réponse est un token le placer dans un cookie et rediriger vers la page d'accueil
         if (data.token) {
-          console.log("Connexion réussie");
+          
           // Cookie qui expire dans 12 heures
           document.cookie = `Bearer=${data.token}; max-age=${720 * 60}; path=/;`;
           window.location.href = "/";
@@ -51,10 +51,10 @@ function Login() {
         else {
           setMessage(data.message);
           setOpen(true);
-          console.log(data.message);
+          
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {});
   }
 
   return (
